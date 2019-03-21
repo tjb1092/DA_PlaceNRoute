@@ -21,8 +21,6 @@ class ConnectivityList:
 			# Instantiate all cells
 			self.cells[i] = Cell(i)
 
-		print(self.cells[45].nbrs)
-
 		self.nets = {}
 		for i in range(1, self.num_nets+1):
 			# Instantiate all nets
@@ -35,8 +33,8 @@ class ConnectivityList:
 		# [0-net#, 1-cell1#, 2-term1#, 3-cell2#, 2-term2#]
 
 		# add 0->1 net
-		print(net)
-		print(self.cells[net[1]].nbrs)
+		#print(net)
+		#print(self.cells[net[1]].nbrs)
 		if net[3] in self.cells[net[1]].nbrs:
 			# if it's a repeat, add 1 to "weight"
 			self.cells[net[1]].nbrs[net[3]] += 1
@@ -44,7 +42,7 @@ class ConnectivityList:
 			#else, create connection
 			self.cells[net[1]].nbrs[net[3]] = 1
 
-		print(self.cells[net[1]].nbrs)
+		#print(self.cells[net[1]].nbrs)
 		# add 1->0 net
 		if net[1] in self.cells[net[3]].nbrs:
 			# if it's a repeat, add 1 to "weight"
