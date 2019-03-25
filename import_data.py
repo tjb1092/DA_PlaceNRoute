@@ -3,7 +3,21 @@ import random
 class Cell:
 	def __init__(self, num):
 		self.num = num
+		self.place_loc = (0, 0) # Define the relative placement to other cells.
 		self.nbrs = {}  # constant time lookup for membership/weight
+
+	def compute_place_loc(self):
+		num_x, num_y, denom = 0, 0, 0
+		for nbr in self.nbrs:
+
+			w = self.nbrs[nbr]
+			num_x += w * nbr.place_loc[0]
+			num_y += w * nbr.place_loc[1]
+			denom += w
+		if denom == 0:
+			denom += 1  # prevent /0 issue for cells w/ no neighbors. This will try to stick it in the 0,0 corner.
+		return round(num_x / denom), round(num_y / denom)
+
 
 class Net:
 	def __init__(self, num):
@@ -26,84 +40,36 @@ class ConnectivityList:
 			# Instantiate all nets
 			self.nets[i] = Net(i)
 
-
-
 	def add_net(self, net):
 		# net is a list of length 5
 		# [0-net#, 1-cell1#, 2-term1#, 3-cell2#, 2-term2#]
 
 		# add 0->1 net
-		#print(net)
-		#print(self.cells[net[1]].nbrs)
-		if net[3] in self.cells[net[1]].nbrs:
+		if self.cells[net[3]] in self.cells[net[1]].nbrs:
 			# if it's a repeat, add 1 to "weight"
-			self.cells[net[1]].nbrs[net[3]] += 1
+			self.cells[net[1]].nbrs[self.cells[net[3]]] += 1
 		else:
 			#else, create connection
-			self.cells[net[1]].nbrs[net[3]] = 1
+			self.cells[net[1]].nbrs[self.cells[net[3]]] = 1
 
-		#print(self.cells[net[1]].nbrs)
 		# add 1->0 net
-		if net[1] in self.cells[net[3]].nbrs:
+		if self.cells[net[1]] in self.cells[net[3]].nbrs:
 			# if it's a repeat, add 1 to "weight"
-			self.cells[net[3]].nbrs[net[1]] += 1
+			self.cells[net[3]].nbrs[self.cells[net[1]]] += 1
 		else:
 			#else, create connection
-			self.cells[net[3]].nbrs[net[1]] = 1
+			self.cells[net[3]].nbrs[self.cells[net[1]]] = 1
 		self.nets[net[0]].terminals = {net[1]:net[2], net[3]: net[4]}
 
-
-class GroupLst:
-	def __init__(self, graph, num_cells):
-		self.graph = graph  # pointer to adjacency list
-		self.num_cells = num_cells
-		# initialize group array to have 50% group A and 50% group B.
-		self.V = [0]*(self.num_cells//2) + [1]*(self.num_cells//2)
-		random.shuffle(self.V)  # initialize random partition
-		self.init_cost()  # Initialize the cost of the random partition
-
-	def init_cost(self):
+	def compute_place_cost(self):
 		cost = 0
-		for i, n in enumerate(self.V):
-			# Find 0 cells w/ connections in 1
-			if n == 0:
-				if i+1 in self.graph.cells:
-					for nbr in self.graph.cells[i+1].nbrs:
-						if self.V[nbr-1] == 1:
-							# Add their weights
-							cost += self.graph.cells[i+1].nbrs[nbr]
-		self.cost = cost
+		for cell in self.cells.values():
+			x, y = cell.place_loc[0], cell.place_loc[1]
+			for nbr in cell.nbrs:
+				w = cell.nbrs[nbr]
+				cost += (w * (abs(x - nbr.place_loc[0]) + abs(y - nbr.place_loc[1])))
+		return cost
 
-	def perturb(self):
-		# randomly switch two cells
-		A = random.randint(0,self.num_cells-1)
-		chosen = False
-		while not chosen:
-			# Ensures that the B cell is not in A
-			B = random.randint(0,self.num_cells-1)
-			if B == A or self.V[B] == self.V[A]:
-				continue
-			else:
-				chosen = True
-		# Switch the groups
-		self.V[A], self.V[B] = int(not(self.V[A])), int(not(self.V[B]))
-
-		# Update the costs based on that move
-		self.update_cost(A+1, B+1)  # The +1 offsets the 0-index of the list
-		self.update_cost(B+1, A+1)
-
-	def update_cost(self, A, B):
-		# get A's group
-		gA = self.V[A-1]
-		if A in self.graph.cells:
-			# Traverse through all of A's nbrs.
-			for nbr in self.graph.cells[A].nbrs:
-				if self.V[nbr-1] == gA and nbr != (B):
-					# Reduce cost if nbr is now in the same group as A
-					self.cost = self.cost - self.graph.cells[A].nbrs[nbr]
-				elif self.V[nbr-1] != gA and nbr != (B):
-					# Increase "    "
-					self.cost = self.cost + self.graph.cells[A].nbrs[nbr]
 
 def data_load(fn):
 	# Open file and read its contents
@@ -119,30 +85,13 @@ def data_load(fn):
 	for row in content[2:]:
 		# For each row, add the net to the graph
 		cells = row[:-1].split(" ")
-		print(cells)
 		connect_lst.add_net([int(x) for x in cells])
 
 	#print([(x.num,x.terminals) for x in connect_lst.nets.values()])
-	#print([(x.num,x.nbrs) for x in connect_lst.cells.values()])
+	#print([(x.num,[y.num for y in x.nbrs]) for x in connect_lst.cells.values()])
 	return connect_lst
 
 
-def writeResults(solution, cost, fn):
-	# Write the cost and cutsets to an output file.
-	f = open("Results/{}".format(fn), "w")
-	newline = str(cost)+ "\n"  # Generate cost string
-	f.write(newline)
-	A, B = "", ""
-	# Generate strings for the A group and the B group
-	for i, n in enumerate(solution):
-		if n == 0:
-			A += (str(i+1) + " ")
-		else:
-			B += (str(i+1) + " ")
-
-	f.write(A+"\n")
-	f.write(B+"\n")
-	f.close()
 
 if __name__ == "__main__":
 	data_load("Example-Netlists/1")

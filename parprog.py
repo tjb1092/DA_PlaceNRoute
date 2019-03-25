@@ -5,20 +5,143 @@ import time
 import os
 import matplotlib.pyplot as plt
 import argparse
-from pympler import classtracker
+#from pympler import classtracker
 from operator import itemgetter
+from collections import deque
 
 def con_lin_plmt(n, C, P):
 	print("hi")
 
-def placement(connect_lst, P, place_params):
-	print("nbrs")
-	print(connect_lst.cells.values())
-	tups = [(x.num, len(x.nbrs)) for x in connect_lst.cells.values()]
-	print([(x.num, len(x.nbrs)) for x in connect_lst.cells.values()])
-	print("sorted")
-	print(sorted(tups, key=itemgetter(1), reverse=True))
+def init_placement(connect_lst, place_matrix):
+	l = len(place_matrix)
+	print("L: {}".format(l))
+	x, y, val = 0, 0, 1
+	while val <= connect_lst.num_cells:
+		place_matrix[x][y] = [val, False]
+		connect_lst.cells[val].place_loc = (x, y)  # Add info to cell object
+		val += 1
+		y += 1
+		if y >= l:
+			y = 0
+			x += 1
 
+
+def unlock_positions(place_matrix):
+	# reset all locked positions to unlocked.
+	for i in range(len(place_matrix)):
+		for j in range(len(place_matrix)):
+			place_matrix[i][j][1] = False
+
+
+
+def find_vacant_loc(place_matrix, start):
+	# breadth first search the grid to find the nearest vacant spot
+	l = len(place_matrix)
+	queue = deque([start])
+	seen = set([start])
+
+	while queue:
+		coord = queue.popleft()
+		x, y = coord[0], coord[1]
+		if place_matrix[x][y][0] == 0:
+			return coord
+		for x2, y2 in ((x+1,y), (x-1,y), (x,y+1), (x,y-1)):
+			if 0 <= x2 < l and 0 <= y2 < l and (x2, y2) not in seen:
+				queue.append((x2, y2))
+				seen.add((x2, y2))
+
+	return "ERROR"
+
+def placement(connect_lst, place_matrix, place_params):
+	debug = False
+	init_placement(connect_lst, place_matrix)
+
+	cost = connect_lst.compute_place_cost()
+	print("Initial Cost: {}".format(cost))
+	input("pause")
+
+	tups = [(x.num, sum(x.nbrs.values())) for x in connect_lst.cells.values()]
+	iter_num = 0
+	last_time, total_time = time.time(), time.time()
+
+	while iter_num < place_params["iteration_count"]:
+		cost = connect_lst.compute_place_cost()
+		print("Cost: {}".format(cost))
+		print('Iteration took {:0.3f} seconds'.format((time.time()-last_time)))
+		last_time = time.time()
+		abort_count = 0
+		sorted_cells = deque([x[0] for x in sorted(tups, key=itemgetter(1), reverse=True)]) # re-sort list based on connectivity
+
+		skip_pop = False
+		while len(sorted_cells) > 0:
+			if not skip_pop:
+				# skip if in a ripple
+				cell = sorted_cells.popleft()
+				cur_pos = connect_lst.cells[cell].place_loc
+				place_matrix[cur_pos[0]][cur_pos[1]][0] = 0  # set current cell loc to vacant
+			else:
+				skip_pop = False
+
+			x0, y0 = connect_lst.cells[cell].compute_place_loc()
+
+			if x0 == cur_pos[0] and y0 == cur_pos[1]:
+				# already in correct position? lock location
+				place_matrix[cur_pos[0]][cur_pos[1]][0] = cell
+				place_matrix[cur_pos[0]][cur_pos[1]][1] = True
+				abort_count = 0
+				if debug:
+					print("cell {} moved from ({},{}) to ({},{}) using case {}".format(cell,cur_pos[0], cur_pos[1], cur_pos[0], cur_pos[1], 0))
+
+			elif place_matrix[x0][y0][0] == 0:
+				# ideal spot is vacant. move and lock
+				place_matrix[x0][y0][0] = cell
+				place_matrix[x0][y0][1] = True
+				connect_lst.cells[cell].place_loc = (x0, y0)  # update cell pos
+				abort_count = 0
+				if debug:
+					print("cell {} moved from ({},{}) to ({},{}) using case {}".format(cell,cur_pos[0], cur_pos[1], x0, y0, 1))
+
+			elif place_matrix[x0][y0][0] != 0 and place_matrix[x0][y0][1] == False:
+				# spot occupied, but not locked.
+				# pop cell from that location. Then, put current cell in that pos and lock.
+				# override queue with this new cell
+				tmp_cell = place_matrix[x0][y0][0]
+				sorted_cells.remove(tmp_cell)
+
+				place_matrix[x0][y0][0] = cell
+				place_matrix[x0][y0][1] = True
+				connect_lst.cells[cell].place_loc = (x0, y0)  # update cell pos
+				if debug:
+					print("cell {} displaced cell {} by moving from ({},{}) to ({},{}) using case {}".format(cell, tmp_cell, cur_pos[0], cur_pos[1], x0, y0, 2))
+				cell = tmp_cell
+				cur_pos = connect_lst.cells[cell].place_loc
+				skip_pop = True
+				abort_count = 0
+
+			else:
+				# spot occupied and locked.
+				# Find nearest vacant spot.
+				# consider ripple aborted here.
+				x0, y0 = find_vacant_loc(place_matrix, (x0, y0))
+				place_matrix[x0][y0][0] = cell
+				place_matrix[x0][y0][1] = True
+				connect_lst.cells[cell].place_loc = (x0, y0)  # update cell pos
+				abort_count += 1
+				#print("abort_count: {}".format(abort_count))
+				if debug:
+					print("cell {} moved from ({},{}) to ({},{}) using case {}".format(cell,cur_pos[0], cur_pos[1], x0, y0, 3))
+
+				if abort_count > place_params["abort_limit"]:
+					unlock_positions(place_matrix)
+					iter_num += 1
+
+		unlock_positions(place_matrix)
+		iter_num += 1  # Completed full list w/o hitting abort limit
+
+
+	cost = connect_lst.compute_place_cost()
+	print("Final cost: {}".format(cost))
+	return cost
 
 
 def main():
@@ -46,17 +169,15 @@ def main():
 		x += 1
 	print("x = {}".format(x))
 
-	# cell num, vacant,
-	P = [[(0, True, False ) for i in range(x)] for j in range(x)]  # Instantiate a 2-D list matrix
+	# cell num,locked. num = 0 = vacant
+	place_matrix = [[[0, False] for i in range(x)] for j in range(x)]  # Instantiate a 2-D list matrix
 
-	#nmpt = int(0.0542*(num_cells*num_nets)**0.4921+10)  # Heuristic to scale number of iterations
-
-	place_params = {}
+	place_params = {"iteration_count": 100, "abort_limit": round(0.3 * connect_lst.num_cells) }
 
 	# Execute placement engine.
-	solution, cost = placement(connect_lst, P, place_params)
+	cost = placement(connect_lst, place_matrix, place_params)
 
-	print("num moves per T {}".format(nmpt))
+	input("Finished Placement")
 	# Write the solution to output file
 	writeResults(solution, cost, args.o)
 
