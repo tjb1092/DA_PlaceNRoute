@@ -1,10 +1,12 @@
 import random
 
 class Cell:
-	def __init__(self, num):
+	def __init__(self, num, isCkt):
 		self.num = num
 		self.place_loc = (0, 0) # Define the relative placement to other cells.
 		self.nbrs = {}  # constant time lookup for membership/weight
+		self.isCkt = isCkt  # True = ckt block, False = feedthrough
+		self.nets = {}
 
 	def compute_place_loc(self):
 		num_x, num_y, denom = 0, 0, 0
@@ -18,11 +20,30 @@ class Cell:
 			denom += 1  # prevent /0 issue for cells w/ no neighbors. This will try to stick it in the 0,0 corner.
 		return round(num_x / denom), round(num_y / denom)
 
+	def get_term_location(self, term):
+
+		# compute tx:
+		if term == 1 or term == 2:
+			tx = 2 * self.place_loc[0]
+		else:
+			tx = 2 * self.place_loc[0] + 1
+
+		# compute ty
+		if term == 1 or term == 3:
+			ty = 2 * self.place_loc[1]
+		else:
+			ty = 2 * self.place_loc[1] + 1
+		return tx, ty
+
+
+
 
 class Net:
 	def __init__(self, num):
 		self.num = num
-		self.terminals = {}
+		self.terminals = []
+
+
 
 
 class ConnectivityList:
@@ -33,7 +54,7 @@ class ConnectivityList:
 		self.cells = {}  # constant time lookup for membership/weight
 		for i in range(1, self.num_cells+1):
 			# Instantiate all cells
-			self.cells[i] = Cell(i)
+			self.cells[i] = Cell(i, True)
 
 		self.nets = {}
 		for i in range(1, self.num_nets+1):
@@ -59,7 +80,7 @@ class ConnectivityList:
 		else:
 			#else, create connection
 			self.cells[net[3]].nbrs[self.cells[net[1]]] = 1
-		self.nets[net[0]].terminals = {net[1]:net[2], net[3]: net[4]}
+		self.nets[net[0]].terminals = [(net[1], net[2]), (net[3], net[4])]
 
 	def compute_place_cost(self):
 		cost = 0

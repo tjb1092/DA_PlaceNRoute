@@ -143,6 +143,36 @@ def placement(connect_lst, place_matrix, place_params):
 	print("Final cost: {}".format(cost))
 	return cost
 
+def construct_channel_lst(p_m_len):
+	# Construct  channel list based on number of rows in grid
+	channel_lst = [[0]]
+	for i in range(1, p_m_len):
+		channel_lst.append([2*i-1, 2*i])
+	channel_lst.append([2*p_m_len - 1])
+	return channel_lst
+
+
+def add_feedthrough(connect_lst, place_matrix, channel_lst):
+
+	# For each net, determine if a feedthrough cell needs to be place.
+
+	for net in connect_lst.nets:
+		cell1, term1 =  net.terminals[0]
+		cell2, term2 = net.terminals[1]
+		tx1, ty1 = connect_lst.cells[cell1].get_term_location(term1)
+		tx2, ty2 = connect_lst.cells[cell2].get_term_location(term2)
+		ch1 = [tx1 in x for x in channel_lst].index(True)
+		ch2 = [tx2 in x for x in channel_lst].index(True)
+
+		if abs(ch1-ch2) > 0:
+			# if in different channels, need to add a feedthrough.
+			for row in range(min(ch1), max(ch2)):
+				# add feedthrough cell to these rows.
+				add_feedthrough_cell(row, cell1, cell2, place_matrix, channel_lst)
+				
+
+
+
 
 def main():
 	# Needed for the specified command line arguments
@@ -176,6 +206,14 @@ def main():
 
 	# Execute placement engine.
 	cost = placement(connect_lst, place_matrix, place_params)
+
+	channel_lst = construct_channel_lst(len(place_matrix))
+
+	# Based on row-placement, add feedthrough cells to allow for proper channel routing.
+	add_feedthrough(connect_lst, place_matrix, channel_lst)
+
+
+
 
 	input("Finished Placement")
 	# Write the solution to output file
