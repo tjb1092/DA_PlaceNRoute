@@ -82,6 +82,29 @@ class ConnectivityList:
 			self.cells[net[3]].nbrs[self.cells[net[1]]] = 1
 		self.nets[net[0]].terminals = [(net[1], net[2]), (net[3], net[4])]
 
+	def add_feedthrough_cell(self):
+		# Add new feedthrough cell to the dict of total cells.
+		self.num_cells += 1
+
+		self.cells[self.num_cells] = Cell(self.num_cells, False)
+		return self.num_cells  # Return the ft cell number
+
+	def splice_net(self, net, ft_cell):
+		# Create top ft net
+		self.num_nets += 1
+		self.nets[self.num_nets] = Net(self.num_nets)
+		self.add_net([self.num_nets, net[0][0], net[0][1], ft_cell, 1])
+
+		# Create bottom ft net
+		self.num_nets += 1
+		self.nets[self.num_nets] = Net(self.num_nets)
+		self.add_net([self.num_nets, ft_cell, 2, net[1][0], net[1][1]])
+		#print("original: ({}, {}). FT: {}".format(net[0], net[1], ft_cell))
+		#print("spliced: ({}, {}), ({}, {})".format(self.nets[self.num_nets-1].terminals[0], self.nets[self.num_nets-1].terminals[1], self.nets[self.num_nets].terminals[0], self.nets[self.num_nets].terminals[1]))
+		#input("pause")
+		return self.nets[self.num_nets]
+
+
 	def compute_place_cost(self):
 		cost = 0
 		for cell in self.cells.values():
@@ -90,6 +113,7 @@ class ConnectivityList:
 				w = cell.nbrs[nbr]
 				cost += (w * (abs(x - nbr.place_loc[0]) + abs(y - nbr.place_loc[1])))
 		return cost
+
 
 
 def data_load(fn):
