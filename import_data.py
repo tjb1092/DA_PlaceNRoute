@@ -15,12 +15,7 @@ def data_load(fn):
 		# For each row, add the net to the graph
 		cells = row[:-1].split(" ")
 		connect_lst.add_net([int(x) for x in cells])
-
-	#print([(x.num,x.terminals) for x in connect_lst.nets.values()])
-	#print([(x.num,[y.num for y in x.nbrs]) for x in connect_lst.cells.values()])
 	return connect_lst
-
-
 
 if __name__ == "__main__":
 	data_load("Example-Netlists/1")

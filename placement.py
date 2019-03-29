@@ -68,15 +68,9 @@ def force_directed_placement(connect_lst, place_matrix, place_params):
 	last_time, total_time = time.time(), time.time()
 
 	while iter_num < place_params["iteration_count"]:
-		"""
-		if not place_params["is2D"]:
-			for row in place_matrix:
-				print(row)
-			#input("pause")
-		"""
+
 		abort_count = 0
 		sorted_cells = deque([x[0] for x in sorted(tups, key=itemgetter(1), reverse=True)]) # re-sort list based on connectivity
-		#print(sorted_cells)
 
 		skip_pop = False
 		while len(sorted_cells) > 0:
@@ -89,17 +83,8 @@ def force_directed_placement(connect_lst, place_matrix, place_params):
 			else:
 				skip_pop = False
 
-
 			x0, y0 = connect_lst.cells[cell].compute_place_loc(place_params["is2D"])
 
-			"""
-			if not place_params["is2D"]:
-				for row in place_matrix:
-					print(row)
-				print("len cells: {}".format(len(sorted_cells)))
-				print("cell: {}, current: {}, desired ({}, {})".format(cell, cur_pos, x0, y0))
-				input("pause")
-			"""
 			if x0 == cur_pos[0] and y0 == cur_pos[1] and not place_matrix[x0][y0][1]:
 				# already in correct position? lock location.
 				# The 3rd condition makes sure that a cell can't be placed in it's current spot
@@ -142,24 +127,12 @@ def force_directed_placement(connect_lst, place_matrix, place_params):
 				# consider ripple aborted here.
 				coord, isVacant = find_vacant_loc(place_matrix, (x0, y0), place_params["is2D"])
 				x0, y0 = coord[0], coord[1]
-				"""
-				if not isVacant:
-					tmp_cell = place_matrix[x0][y0][0]
-					print("cell: {}, Tmp cell: {}".format(cell, tmp_cell))
-					print(sorted_cells)
-					sorted_cells.remove(tmp_cell)
-				"""
 				place_matrix[x0][y0][0] = cell
 				place_matrix[x0][y0][1] = True
 				connect_lst.cells[cell].place_loc = (x0, y0)  # update cell pos
 				abort_count += 1
 				#print("abort_count: {}".format(abort_count))
-				"""
-				if not isVacant:
-					cell = tmp_cell
-					cur_pos = connect_lst.cells[cell].place_loc
-					skip_pop = True
-				"""
+
 				if debug:
 					print("cell {} moved from ({},{}) to ({},{}) using case {}".format(cell,cur_pos[0], cur_pos[1], x0, y0, 3))
 
@@ -202,26 +175,21 @@ def add_feedthrough(connect_lst, place_matrix, channel_lst):
 		tx2, ty2 = connect_lst.cells[cell2].get_term_location(term2)
 		ch1 = [tx1 in x for x in channel_lst].index(True)
 		ch2 = [tx2 in x for x in channel_lst].index(True)
-		#print("c1: {}, ch1: {}, c2: {}, ch2: {}".format(cell1, ch1, cell2, ch2))
-		#input("pause")
+
 		if abs(ch1-ch2) > 0:
 			net_num = net.num
 			if ch1 < ch2:
 				splice_net = [net.terminals[0], net.terminals[1]]
 			else:
 				splice_net = [net.terminals[1], net.terminals[0]]
-			#print("Adding feedthrough")
-			#print("net num: {}, net: {}".format(net_num, splice_net))
+
 			# if in different channels, need to add a feedthrough.
 			for row in range(min(ch1, ch2), max(ch1, ch2)):
 				# add feedthrough cell to these rows.
-				#print("row: {}".format(row))
 				ft_cell  = connect_lst.add_feedthrough_cell()
 				place_matrix[row].append([ft_cell, False])  # Append to appropriate row
 				connect_lst.cells[ft_cell].place_loc = (row, len(place_matrix[row])-1) # Update FT cell with coordinates
 
-				#print("FT_cell loc: {}".format(connect_lst.cells[ft_cell].place_loc))
-				#input("pause")
 				del connect_lst.nets[net_num] # delete net to be spliced
 
 				# splice the net
@@ -229,10 +197,6 @@ def add_feedthrough(connect_lst, place_matrix, channel_lst):
 				splice_net = spliced_net2.terminals  # already ordered from top->bot
 				net_num = spliced_net2.num
 
-				#print([x for x in connect_lst.nets])
-				#input("pause")
-
-	# add dummy cells to make place_matrix square
 	# determine the longest row
 	l = 0
 	for row in place_matrix:
@@ -250,7 +214,6 @@ def add_feedthrough(connect_lst, place_matrix, channel_lst):
 			place_matrix[row].append([ft_cell, False])  # Append to appropriate row
 			connect_lst.cells[ft_cell].place_loc = (row, len(place_matrix[row])-1) # Update FT cell with coordinates
 		place_matrix[row].append([0, False])
-	return cell_num, ft_num
 
 def construct_routing_lst(connect_lst, place_matrix, channel_lst):
 	# each row should have the net #
@@ -263,19 +226,15 @@ def construct_routing_lst(connect_lst, place_matrix, channel_lst):
 		else:
 			term_num += 1
 
-
 	routing_lst = [[0 for i in range(term_num)] for j in range(channels_num)]  # Instantiate a 2-D list matrix
 
 	for net in connect_lst.nets.values():
 		# for each net, assign the proper terminals to routing_lst
 
-		#print(net.num, net.terminals)
-
 		for [cell, term] in net.terminals:
 			# for the two cells, find row and col.
 			# const height, so row is straight forward from X coord
 			c = connect_lst.cells[cell]
-			#print("cell: {}, term, {}, {}".format(cell, term, c.place_loc))
 			if (c.isCkt and (term == 1 or term == 2)) or (not c.isCkt and term == 1):
 				row = c.place_loc[0] * 2
 			else:
@@ -283,7 +242,6 @@ def construct_routing_lst(connect_lst, place_matrix, channel_lst):
 
 			# for col, the cell widths are not equal, so a traversal of place_matrix is needed
 			col = 0
-			#print("traversal")
 			for i in range(c.place_loc[1]):
 				tmp_cell = place_matrix[c.place_loc[0]][i][0]
 				if tmp_cell == 0 or connect_lst.cells[tmp_cell].isCkt:
@@ -291,25 +249,13 @@ def construct_routing_lst(connect_lst, place_matrix, channel_lst):
 				else:
 					col += 1
 
-				#print("col: {}, cell: {}".format(col, tmp_cell))
-
 			if c.isCkt and (term == 2 or term == 4):
 				col += 1
 
-			"""
-			print("dim ({}, {})".format(len(place_matrix), len(place_matrix[0])))
-			print("rdim ({}, {})".format(len(routing_lst), len(routing_lst[0])))
-			print("channels {}, terms {}".format(channels_num, term_num))
-			print("cell: {}, term, {}, row {}, col {}".format(cell, term, row, col))
-			print(place_matrix[c.place_loc[0]])
-			"""
 			routing_lst[row][col] = net.num
 
-		#for row in routing_lst:
-			#print(row)
-		#input("pasue")
-	for row in routing_lst:
-		print(row)
+	#for row in routing_lst:
+		#print(row)
 
 	return routing_lst
 
@@ -342,4 +288,6 @@ def placement(connect_lst, place_params):
 	cost = force_directed_placement(connect_lst, place_matrix, place_params)
 
 	routing_lst = construct_routing_lst(connect_lst, place_matrix, channel_lst)
+	print("routing dim: ({}, {})".format(len(routing_lst), len(routing_lst[0])))
+
 	return cost, routing_lst, channel_lst, place_matrix

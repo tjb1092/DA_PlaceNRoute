@@ -100,9 +100,7 @@ class ConnectivityList:
 		self.num_nets += 1
 		self.nets[self.num_nets] = Net(self.num_nets)
 		self.add_net([self.num_nets, ft_cell, 2, net[1][0], net[1][1]])
-		#print("original: ({}, {}). FT: {}".format(net[0], net[1], ft_cell))
-		#print("spliced: ({}, {}), ({}, {})".format(self.nets[self.num_nets-1].terminals[0], self.nets[self.num_nets-1].terminals[1], self.nets[self.num_nets].terminals[0], self.nets[self.num_nets].terminals[1]))
-		#input("pause")
+		
 		return self.nets[self.num_nets]
 
 	def update_locations(self, place_matrix):

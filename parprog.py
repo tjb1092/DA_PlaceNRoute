@@ -31,8 +31,6 @@ def main():
 
 	# Begin Routing!
 
-
-
 	# Write the solution to output file
 	writeResults(solution, cost, args.o)
 
