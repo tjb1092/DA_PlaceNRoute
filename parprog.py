@@ -1,16 +1,9 @@
 from import_data  import data_load
 from placement import placement
-import math
-import random
 import time
 import os
 import matplotlib.pyplot as plt
 import argparse
-import copy
-#from pympler import classtracker
-from operator import itemgetter
-from collections import deque
-
 
 
 def main():

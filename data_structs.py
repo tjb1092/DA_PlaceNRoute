@@ -1,5 +1,11 @@
 
 
+class Net:
+	def __init__(self, num):
+		self.num = num
+		self.terminals = []
+
+
 class Cell:
 	def __init__(self, num, isCkt):
 		self.num = num
@@ -39,12 +45,6 @@ class Cell:
 		else:
 			ty = 2 * self.place_loc[1] + 1
 		return tx, ty
-
-
-class Net:
-	def __init__(self, num):
-		self.num = num
-		self.terminals = []
 
 
 class ConnectivityList:
@@ -112,8 +112,6 @@ class ConnectivityList:
 				cell = place_matrix[row][col][0]
 				if cell:
 					self.cells[cell].place_loc = (row, col)
-
-
 
 	def compute_place_cost(self):
 		cost = 0

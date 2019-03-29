@@ -238,10 +238,11 @@ def add_feedthrough(connect_lst, place_matrix, channel_lst):
 	for row in place_matrix:
 		if len(row) > l:
 			l = len(row)
-	old_len = len(place_matrix) * 6
-	print("old len {}".format(old_len))
-	new_len = old_len + (l-len(place_matrix)) * 3
-	print("new len {}".format(new_len))
+	cell_num = len(place_matrix)
+	print("old len {}".format(cell_num * 6))
+
+	ft_num = l - len(place_matrix)
+	print("new len {}".format(cell_num * 6 + ft_num * 3))
 	for row in range(len(place_matrix)):
 		# for each row, append dummy cells till it's square
 		while len(place_matrix[row]) < l:
@@ -249,12 +250,50 @@ def add_feedthrough(connect_lst, place_matrix, channel_lst):
 			place_matrix[row].append([ft_cell, False])  # Append to appropriate row
 			connect_lst.cells[ft_cell].place_loc = (row, len(place_matrix[row])-1) # Update FT cell with coordinates
 		place_matrix[row].append([0, False])
+	return cell_num, ft_num
 
-
-def construct_routing_lst(connect_lst, place_matrix, channel_lst):
+def construct_routing_lst(connect_lst, place_matrix, channel_lst, cell_num, ft_num):
 	# each row should have the net #
-	print("hi")
+	channels_num = 2* len(place_matrix)
+	term_num = cell_num * 2 + ft_num
 
+	routing_lst = [[0 for i in range(term_num)] for j in range(channels_num)]  # Instantiate a 2-D list matrix
+
+	for net in connect_lst.nets.values():
+		# for each net, assign the proper terminals to routing_lst
+
+		#print(net.num, net.terminals
+
+		for [cell, term] in net.terminals:
+			# for the two cells, find row and col.
+			# const height, so row is straight forward from X coord
+			c = connect_lst.cells[cell]
+
+			if (c.isCkt and (term == 1 or term == 2)) or (not c.isCkt and term == 1):
+				row = c.place_loc[0] * 2
+			else:
+				row = c.place_loc[0] * 2 + 1
+
+			# for col, the cell widths are not equal, so a traversal of place_matrix is needed
+			col = 0
+			for i in range(c.place_loc[1]):
+				tmp_cell = place_matrix[c.place_loc[0]][i][0]
+				if connect_lst.cells[tmp_cell].isCkt:
+					col += 2
+				else:
+					col += 1
+			if c.isCkt and (term == 2 or term == 4):
+				col += 1
+
+			#print("cell: {}, term, {}, row {}, col {}".format(cell, term, row, col))
+			#input("pasue")
+
+			routing_lst[row][col] = net.num
+
+	for row in routing_lst:
+		print(row)
+
+	return routing_lst
 
 def placement(connect_lst, place_params):
 
@@ -277,12 +316,12 @@ def placement(connect_lst, place_params):
 	channel_lst = construct_channel_lst(len(place_matrix))
 
 	# Based on row-placement, add feedthrough cells to allow for proper channel routing.
-	add_feedthrough(connect_lst, place_matrix, channel_lst)
+	cell_num, ft_num = add_feedthrough(connect_lst, place_matrix, channel_lst)
 
 	print("Starting 2nd Placement")
 	place_params["is2D"] = False
 
 	cost = force_directed_placement(connect_lst, place_matrix, place_params)
 
-	routing_lst = construct_routing_lst(connect_lst, place_matrix, channel_lst)
-	return cost, routing_lst, place_matrix
+	routing_lst = construct_routing_lst(connect_lst, place_matrix, channel_lst, cell_num, ft_num)
+	return cost, routing_lst, channel_lst, place_matrix
