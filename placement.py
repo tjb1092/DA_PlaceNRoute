@@ -122,8 +122,7 @@ def force_directed_placement(connect_lst, place_matrix, place_params):
 				abort_count = 0
 
 			else:
-				# spot occupied and locked.
-				# Find nearest vacant spot.
+				# spot occupied and locked. Find nearest vacant spot.
 				# consider ripple aborted here.
 				coord, isVacant = find_vacant_loc(place_matrix, (x0, y0), place_params["is2D"])
 				x0, y0 = coord[0], coord[1]
@@ -131,19 +130,17 @@ def force_directed_placement(connect_lst, place_matrix, place_params):
 				place_matrix[x0][y0][1] = True
 				connect_lst.cells[cell].place_loc = (x0, y0)  # update cell pos
 				abort_count += 1
-				#print("abort_count: {}".format(abort_count))
 
 				if debug:
 					print("cell {} moved from ({},{}) to ({},{}) using case {}".format(cell,cur_pos[0], cur_pos[1], x0, y0, 3))
-
+					print("abort_count: {}".format(abort_count))
 				if abort_count > place_params["abort_limit"]:
 					break
 
 		unlock_positions(place_matrix)
 		iter_num += 1  # Completed full list w/o hitting abort limit
 		cost = connect_lst.compute_place_cost()
-		print("Cost: {}".format(cost))
-		print('Iteration took {:0.3f} seconds'.format((time.time()-last_time)))
+		print("Cost: {}, Iteration took {:0.3f} seconds".format(cost, time.time()-last_time), end="\r")
 		if cost < best_cost:
 			best_place, best_cost = copy.deepcopy(place_matrix), cost
 
@@ -152,7 +149,7 @@ def force_directed_placement(connect_lst, place_matrix, place_params):
 	#place_matrix = copy.deepcopy(best_place)
 	#connect_lst.update_locations(place_matrix)
 	cost = connect_lst.compute_place_cost()
-	print("Final cost: {}".format(cost))
+	print("\nFinal cost: {}".format(cost))
 	return cost
 
 def construct_channel_lst(p_m_len):
@@ -254,9 +251,6 @@ def construct_routing_lst(connect_lst, place_matrix, channel_lst):
 
 			routing_lst[row][col] = net.num
 
-	#for row in routing_lst:
-		#print(row)
-
 	return routing_lst
 
 def placement(connect_lst, place_params):
@@ -267,10 +261,10 @@ def placement(connect_lst, place_params):
 		x += 1
 	print("x = {}".format(x))
 
-	# cell num,locked. num = 0 = vacant
+	# [cell num, locked]. num = 0 = vacant
 	place_matrix = [[[0, False] for i in range(x)] for j in range(x)]  # Instantiate a 2-D list matrix
 
-	# initalize placement
+	# inital, sequential placement
 	init_placement(connect_lst, place_matrix)
 
 	# Execute force-directed placement engine.
@@ -284,10 +278,11 @@ def placement(connect_lst, place_params):
 
 	print("Starting 2nd Placement")
 	place_params["is2D"] = False
-
+	place_params["interation_count"] = 0.25 * place_params["iteration_count"]
 	cost = force_directed_placement(connect_lst, place_matrix, place_params)
 
 	routing_lst = construct_routing_lst(connect_lst, place_matrix, channel_lst)
 	print("routing dim: ({}, {})".format(len(routing_lst), len(routing_lst[0])))
 
+	print("Placement Finished!")
 	return cost, routing_lst, channel_lst, place_matrix

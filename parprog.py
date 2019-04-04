@@ -25,14 +25,15 @@ def main():
 	connect_lst = data_load(args.i)
 	print("Graph Created")
 
-	# Begin Placement!
-	place_params = {"is2D":True, "iteration_count": 10, "abort_limit": round(0.3 * connect_lst.num_cells) }
+	# Perform Placement
+	place_params = {"is2D":True, "iteration_count": 100, "abort_limit": round(0.3 * connect_lst.num_cells) }
 	placement(connect_lst, place_params)
 
-	# Begin Routing!
+	# Perform Routing
+	print("Begin Routing")
 
 	# Write the solution to output file
-	writeResults(solution, cost, args.o)
+	#writeResults()
 
 
 if __name__ == "__main__":
