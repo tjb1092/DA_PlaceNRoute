@@ -218,10 +218,7 @@ def construct_routing_lst(connect_lst, place_matrix, channel_lst):
 	term_num = 0
 	for i in range(len(place_matrix[0])):
 		tmp_cell = place_matrix[0][i][0]
-		if tmp_cell == 0 or connect_lst.cells[tmp_cell].isCkt:
-			term_num += 2
-		else:
-			term_num += 1
+		term_num += 2
 
 	routing_lst = [[0 for i in range(term_num)] for j in range(channels_num)]  # Instantiate a 2-D list matrix
 
@@ -238,18 +235,25 @@ def construct_routing_lst(connect_lst, place_matrix, channel_lst):
 				row = c.place_loc[0] * 2 + 1
 
 			# for col, the cell widths are not equal, so a traversal of place_matrix is needed
+			# note: I'll make this the same as the row col later. It works now and it's pretty fast
 			col = 0
 			for i in range(c.place_loc[1]):
 				tmp_cell = place_matrix[c.place_loc[0]][i][0]
-				if tmp_cell == 0 or connect_lst.cells[tmp_cell].isCkt:
-					col += 2
-				else:
-					col += 1
+				col += 2
 
 			if c.isCkt and (term == 2 or term == 4):
 				col += 1
 
 			routing_lst[row][col] = net.num
+		"""
+		#debug
+		for row in place_matrix:
+			print(row)
+		for row in routing_lst:
+			print(row)
+		print(net.num, net.terminals)
+		input("pause")
+		"""
 
 	return routing_lst
 
