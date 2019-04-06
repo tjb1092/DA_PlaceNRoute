@@ -1,4 +1,5 @@
 from import_data  import data_load
+from magic import magic
 from placement import placement
 from routing import routing
 import time
@@ -35,7 +36,7 @@ def main():
 	routing(routing_lst)
 
 	# Write the solution to output file
-	#writeResults()
+	magic()
 
 
 if __name__ == "__main__":
