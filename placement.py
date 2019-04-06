@@ -60,7 +60,7 @@ def force_directed_placement(connect_lst, place_matrix, place_params):
 	best_place, best_cost = copy.deepcopy(place_matrix), cost
 
 	print("Initial Cost: {}".format(cost))
-	input("pause")
+	#input("pause")
 
 	tups = [(x.num, sum(x.nbrs.values())) for x in connect_lst.cells.values()]
 

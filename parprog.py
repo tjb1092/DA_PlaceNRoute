@@ -1,5 +1,6 @@
 from import_data  import data_load
 from placement import placement
+from routing import routing
 import time
 import os
 import matplotlib.pyplot as plt
@@ -27,10 +28,11 @@ def main():
 
 	# Perform Placement
 	place_params = {"is2D":True, "iteration_count": 100, "abort_limit": round(0.3 * connect_lst.num_cells) }
-	placement(connect_lst, place_params)
+	cost, routing_lst, channel_lst, place_matrix = placement(connect_lst, place_params)
 
 	# Perform Routing
 	print("Begin Routing")
+	routing(routing_lst)
 
 	# Write the solution to output file
 	#writeResults()
