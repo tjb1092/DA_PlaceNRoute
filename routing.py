@@ -1,17 +1,23 @@
 from collections import defaultdict
 
+
 def create_vcg(top, bottom, unassigned):
   vcg = defaultdict(set)
   for column in zip(top, bottom):
-    if column[0] != 0 and column[1] != 0 and column[0] in unassigned and column[1] in unassigned:
+    if column[0] != 0 and column[1] != 0 and column[0] in unassigned and column[1] in unassigned and column[0] != column[1]:
       vcg[column[0]].add(column[1])
   return vcg
+
 
 def has_parents(net, vcg):
   for par, children in vcg.items():
     if net in children:
       return True
   return False
+
+
+def has_childre(net, vcg):
+  return bool(vcg[net])
 
 
 def routing(routing_list):
@@ -22,7 +28,8 @@ def routing(routing_list):
   it = iter(routing_list)
   for top in it:
     bottom = next(it)
-    # print(*zip(top, bottom))
+    print(top)
+    print(bottom)
     all_nets = set()
     net_to_leftedge = {}
     net_to_rightedge = {}
@@ -45,13 +52,18 @@ def routing(routing_list):
       # print(nets_by_leftedge)
       track = []
       track_right_edge = -1
+      iter_nets_assigned = False
       for net in nets_by_leftedge:
         if not has_parents(net, vcg) and net_to_leftedge[net] > track_right_edge:
           # print("net " + str(net) + " had no parents")
           # print(nets_unassigned)
           nets_unassigned.remove(net)
+          iter_nets_assigned = True
           track += [net]
           track_right_edge = net_to_rightedge[net]
+      if not iter_nets_assigned:
+        print("!!!CYCLE!!!")
+        break
       tracks += [track]
     print(tracks)
     all_tracks += [tracks]
