@@ -100,7 +100,7 @@ class ConnectivityList:
 		self.num_nets += 1
 		self.nets[self.num_nets] = Net(self.num_nets)
 		self.add_net([self.num_nets, ft_cell, 2, net[1][0], net[1][1]])
-		
+
 		return self.nets[self.num_nets]
 
 	def update_locations(self, place_matrix):
@@ -112,10 +112,15 @@ class ConnectivityList:
 					self.cells[cell].place_loc = (row, col)
 
 	def compute_place_cost(self):
+		# For each net, compute the rectilinear distance 
+		# between the two connected cells.
 		cost = 0
-		for cell in self.cells.values():
-			x, y = cell.place_loc[0], cell.place_loc[1]
-			for nbr in cell.nbrs:
-				w = cell.nbrs[nbr]
-				cost += (w * (abs(x - nbr.place_loc[0]) + abs(y - nbr.place_loc[1])))
+		for net in self.nets.keys():
+			cell1 = self.nets[net].terminals[0][0]
+			cell2 = self.nets[net].terminals[1][0]
+
+			x1, y1 = self.cells[cell1].place_loc
+			x2, y2 = self.cells[cell2].place_loc
+
+			cost += abs(x1 - x2) + abs(y1 - y2)
 		return cost
