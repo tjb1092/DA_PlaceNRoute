@@ -30,13 +30,16 @@ def main():
 	# Perform Placement
 	place_params = {"is2D":True, "iteration_count": 100, "abort_limit": round(0.3 * connect_lst.num_cells) }
 	cost, routing_lst, channel_lst, place_matrix = placement(connect_lst, place_params)
-
+	print(".")
+	print(".")
+	print(".")
 	# Perform Routing
 	print("Begin Routing")
-	routing(routing_lst)
+	all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge = routing(routing_lst)
+	print("Routing Finished!")
 
 	# Write the solution to output file
-	magic()
+	magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge, args.o)
 
 
 if __name__ == "__main__":

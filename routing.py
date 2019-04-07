@@ -47,6 +47,9 @@ def routing(routing_list):
   all_channels = []
   channel_width = len(zero_list)
   it = iter(routing_list)
+  net_to_leftedge_by_channel = []
+  net_to_rightedge_by_channel = []
+  doglegs_by_channel = []
   for top in it:
     # Grab next row too
     bottom = next(it)
@@ -117,7 +120,7 @@ def routing(routing_list):
       # Recreate VCG and cycles for the next cycle removal
       vcg = create_vcg(top, bottom, nets_unassigned)
       cycles = [[node]+path for node in vcg for path in dfs(vcg, node, node)]
-
+    doglegs_by_channel += [doglegs]
     # Perform net assignment!
     # Net assignment is top to bottom in each track
     # TODO: see if bottom to top is better
@@ -147,10 +150,11 @@ def routing(routing_list):
       # Add track to channel
       tracks += [track]
     # Add channel to list of all channels
+    net_to_leftedge_by_channel += [net_to_leftedge]
+    net_to_rightedge_by_channel += [net_to_rightedge]
     all_channels += [tracks]
 
   end = time.time()
-  print("Routing Finished!")
   print("Time Elapsed: " + str(end - start)[:4] + " seconds.")
 
-  return all_channels, doglegs, routing_list
+  return all_channels, doglegs_by_channel, routing_list, net_to_leftedge_by_channel, net_to_rightedge_by_channel
