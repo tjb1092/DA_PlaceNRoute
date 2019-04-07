@@ -1,9 +1,12 @@
+import time
+
 def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge, outfile):
   if not outfile.endswith(".mag"):
     outfile += ".mag"
   f = open(outfile, "w")
   f.write("magic\n")
-  # f.write("tech scmos\n")
+  f.write("tech scmos\n")
+  f.write("timestamp " + str(int(time.time())) + " \n")
   f.write("<< metal1 >>\n")
   # Produce metal1
   y_coord = 0
@@ -21,7 +24,7 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
         if net_to_rightedge[idx][wire] % 2 == 1:
           x_coord_right += 3
         f.write("rect " + str(x_coord_left) + " " + str(y_coord) + " " + str(x_coord_right) + " " + str(y_coord + 1) + "\n")
-    return
-  f.write("<< metal2 >>")
-
+    break
+  # f.write("<< metal2 >>")
+  f.write("<< end >>")
   f.close()
