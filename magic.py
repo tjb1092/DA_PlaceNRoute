@@ -1,6 +1,7 @@
 import time
 
 def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge, outfile):
+  start = time.time()
   if not outfile.endswith(".mag"):
     outfile += ".mag"
   f = open(outfile, "w")
@@ -72,7 +73,60 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
         f.write("rect " + str(x_coord_left) + " " + str(y_coord) + " " + str(x_coord_right + 1) + " " + str(y_coord + 1) + "\n")
       y_coord -= 2
     y_coord -= 9
+
+  # Produce metal2
   f.write("<< metal2 >>\n")
+  y_coord = 0
+  y_coord_top = 0
+  y_coord_bottom = 0
+  for idx, channel in enumerate(all_channels):
+    y_coord_bottom -= 2 * len(channel)
+    for track in channel:
+      for wire in track:
+        num_cells_left = net_to_leftedge[idx][wire] // 2
+        x_coord_left = num_cells_left * 7 + 2
+        if net_to_leftedge[idx][wire] % 2 == 1:
+          x_coord_left += 3
+        num_cells_right = net_to_rightedge[idx][wire] // 2
+        x_coord_right = num_cells_right * 7 + 2
+        if net_to_rightedge[idx][wire] % 2 == 1:
+          x_coord_right += 3
+        top_row = routing_list[idx*2]
+        bottom_row = routing_list[idx*2 + 1]
+        leftedge = net_to_leftedge[idx][wire]
+        rightedge = net_to_rightedge[idx][wire]
+        if top_row[leftedge] == wire:
+          f.write("rect " + str(x_coord_left) + " " + str(y_coord) + " " + str(x_coord_left + 1) + " " + str(y_coord_top + 1) + "\n")
+        if bottom_row[leftedge] == wire:
+          f.write("rect " + str(x_coord_left) + " " + str(y_coord_bottom) + " " + str(x_coord_left + 1) + " " + str(y_coord + 1) + "\n")
+        did_rightedge = False
+        if top_row[rightedge] == wire:
+          f.write("rect " + str(x_coord_right) + " " + str(y_coord) + " " + str(x_coord_right + 1) + " " + str(y_coord_top + 1) + "\n")
+          did_rightedge = True
+        if bottom_row[rightedge] == wire:
+          f.write("rect " + str(x_coord_right) + " " + str(y_coord_bottom) + " " + str(x_coord_right + 1) + " " + str(y_coord + 1) + "\n")
+          did_rightedge = True
+        if not did_rightedge:
+          dogleg = None
+          # Find the correct wire pair
+          for d in doglegs[idx]:
+            if d[0] == wire:
+              dogleg = d
+              break
+          if dogleg != None:
+            dogleg_y_bottom = y_coord_top - 2
+            for d_track in channel:
+              if dogleg[1] in d_track:
+                break
+              dogleg_y_bottom -= 2
+            f.write("rect " + str(x_coord_right) + " " + str(dogleg_y_bottom) + " " + str(x_coord_right + 1) + " " + str(y_coord + 1) + "\n")
+      y_coord -= 2
+    y_coord -= 9
+    y_coord_top = y_coord + 2
+    y_coord_bottom = y_coord
 
   f.write("<< end >>\n")
   f.close()
+
+  end = time.time()
+  print("Time Elapsed: " + str(end - start)[:4] + " seconds.")

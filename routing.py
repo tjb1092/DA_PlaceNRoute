@@ -2,6 +2,7 @@ from collections import defaultdict
 import time
 
 
+# Function to build a vcg from channel lists plus all nets
 def create_vcg(top, bottom, unassigned):
   vcg = {}
   for item in top:
@@ -16,6 +17,8 @@ def create_vcg(top, bottom, unassigned):
   return vcg
 
 
+# Function to see if node in vcg has parents
+# VCGs are so small there is nearly no performance difference
 def has_parents(net, vcg):
   for par, children in vcg.items():
     if net in children:
@@ -23,10 +26,12 @@ def has_parents(net, vcg):
   return False
 
 
+# Function to see if node in vcg has children
 def has_children(net, vcg):
   return bool(vcg[net])
 
 
+# Depth first search of a graph represented as a matrix
 def dfs(graph, start, end):
   fringe = [(start, [])]
   while fringe:
@@ -41,20 +46,23 @@ def dfs(graph, start, end):
 
 
 def routing(routing_list):
+  # Initialize counter
   start = time.time()
+  # Append rows of all 0s so we can make tracks channel by channel
   zero_list = [0 for x in routing_list[0]]
   routing_list = [zero_list] + routing_list + [zero_list]
+  # Initialize variables
   all_channels = []
-  channel_width = len(zero_list)
-  it = iter(routing_list)
   net_to_leftedge_by_channel = []
   net_to_rightedge_by_channel = []
   doglegs_by_channel = []
+  # Calculate width of each channel
+  channel_width = len(zero_list)
+  # Iterate through all channels, top + bottom of channel at a time
+  it = iter(routing_list)
   for top in it:
     # Grab next row too
     bottom = next(it)
-    # print(top)
-    # print(bottom)
 
     # Generate list of all nets, and dicts of left and right edges
     all_nets = set()
@@ -76,7 +84,7 @@ def routing(routing_list):
 
     # This section checks for and removes cycles from the VCG
     # TODO: exit this section and redo placement if we have an unrouted net
-    doglegs = set()
+    doglegs = []
     vcg = create_vcg(top, bottom, nets_unassigned)
     # check for cycles in VCG
     cycles = [[node]+path for node in vcg for path in dfs(vcg, node, node)]
@@ -110,7 +118,7 @@ def routing(routing_list):
           # Add our new net to unassigned
           nets_unassigned.add(new_net_num)
           # Keep track of this dogleg for file generation
-          doglegs.add((net, new_net_num))
+          doglegs += [(net, new_net_num)]
           solved = True
           break
       # If we didn't solve the dogleg, just mark this net as not routed
@@ -123,7 +131,6 @@ def routing(routing_list):
     doglegs_by_channel += [doglegs]
     # Perform net assignment!
     # Net assignment is top to bottom in each track
-    # TODO: see if bottom to top is better
     while nets_unassigned:
       # Calculate VCG
       vcg = create_vcg(top, bottom, nets_unassigned)
@@ -154,6 +161,15 @@ def routing(routing_list):
     net_to_rightedge_by_channel += [net_to_rightedge]
     all_channels += [tracks]
 
+  # Repair dogleg columns so we don't draw the wrong M2
+  for idx, doglegs in enumerate(doglegs_by_channel):
+    for dogleg in doglegs:
+      top_row = routing_list[idx*2]
+      bottom_row = routing_list[idx*2 + 1]
+      top_row[bottom_row.index(dogleg[1])] = 0
+      bottom_row[bottom_row.index(dogleg[1])] = 0
+
+  # Time it!
   end = time.time()
   print("Time Elapsed: " + str(end - start)[:4] + " seconds.")
 
