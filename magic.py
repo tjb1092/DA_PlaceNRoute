@@ -80,6 +80,8 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
   for idx, channel in enumerate(all_channels):
     for track in channel:
       for wire in track:
+        if net_to_leftedge[idx][wire] == net_to_rightedge[idx][wire]:
+          continue
         num_cells_left = net_to_leftedge[idx][wire] // 2
         x_coord_left = num_cells_left * 7 + 2
         if net_to_leftedge[idx][wire] % 2 == 1:
