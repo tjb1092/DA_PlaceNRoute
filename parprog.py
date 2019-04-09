@@ -42,7 +42,7 @@ def main():
 	print(".")
 	# Write the solution to output file
 	print("Begin File Generation")
-	magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge, args.o)
+	magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge, args.o, connect_lst, place_matrix)
 	print("File Generation Finished!")
 
 

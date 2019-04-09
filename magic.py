@@ -3,7 +3,9 @@ import time
 def length_of_wire(x_min, y_min, x_max, y_max):
   return (x_max - x_min) * (y_max - y_min)
 
-def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge, outfile):
+def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge, outfile, connect_list, place_matrix):
+  # cell_num = place_matrix[row][col][0]
+  # isCircuit = connect_list[cell_num].isCkt
   # Initialize timer
   start = time.time()
   num_vias = 0
@@ -21,16 +23,20 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
   # Produce p-diffusion region (standard cells)
   f.write("<< pdiffusion >>\n")
   standard_cells = []
+  all_labels = []
   # Group routing list by what cells the terminals belong to
+  cell_row = 0
   it = iter(routing_list[1:-1])
   for top in it:
     cells_here = []
     bottom = next(it)
     # Group columns by the cell they belong to
+    cell_col = 0
     for i in range(0, len(top), 2):
-      # If the cell has content, we'll need to print it
-      # Empty cells are printed at a later time
-      if top[i] != 0 or top[i+1] != 0 or bottom[i] != 0 or bottom[i+1] != 0:
+      # If the cell exists, we'll need to print it
+      # Even if it doesn't have any terminals
+      cell_num = place_matrix[cell_row][cell_col][0]
+      if cell_num != 0:
         top_left = False
         top_right = False
         bottom_left = False
@@ -45,8 +51,12 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
         if bottom[i + 1] != 0:
           bottom_right = True
         # Collect all the information about the cell
-        cells_here += [(i // 2, top_left, top_right, bottom_left, bottom_right)]
+        if not connect_list.cells[cell_num].isCkt and not (top_left or top_right or bottom_left or bottom_right):
+          continue
+        cells_here += [(i // 2, top_left, top_right, bottom_left, bottom_right, cell_num)]
+        cell_col += 1
     standard_cells += [cells_here]
+    cell_row += 1
   # Print all non-empty cells
   y_coord = 0
   for idx, row in enumerate(standard_cells):
@@ -54,6 +64,10 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
     for cell in row:
       x_coord = cell[0] * 7
       f.write("rect " + str(x_coord + 1) + " " + str(y_coord - 5) + " " + str(x_coord + 7) + " " + str(y_coord + 1) + "\n")
+      labelText = "feedthrough"
+      if connect_list.cells[cell[5]].isCkt:
+        labelText = "cellNo=" + str(cell[5])
+      all_labels += [("pdiffusion", x_coord + 3, y_coord - 3, x_coord + 3, y_coord - 3, 0, labelText)]
     y_coord -= 8
 
   # Print polysilicon pads for standard cells
@@ -65,12 +79,16 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
       x_coord = cell[0] * 7
       if cell[1]:
         f.write("rect " + str(x_coord + 2) + " " + str(y_coord) + " " + str(x_coord + 3) + " " + str(y_coord + 2) + "\n")
+        all_labels += [("polysilicon", x_coord + 2, y_coord + 1, x_coord + 2, y_coord + 1, 0, "1")]
       if cell[2]:
         f.write("rect " + str(x_coord + 5) + " " + str(y_coord) + " " + str(x_coord + 6) + " " + str(y_coord + 2) + "\n")
+        all_labels += [("polysilicon", x_coord + 5, y_coord + 1, x_coord + 5, y_coord + 1, 0, "2")]
       if cell[3]:
         f.write("rect " + str(x_coord + 2) + " " + str(y_coord - 6) + " " + str(x_coord + 3) + " " + str(y_coord - 4) + "\n")
+        all_labels += [("polysilicon", x_coord + 2, y_coord - 5, x_coord + 2, y_coord - 5, 0, "3")]
       if cell[4]:
         f.write("rect " + str(x_coord + 5) + " " + str(y_coord - 6) + " " + str(x_coord + 6) + " " + str(y_coord - 4) + "\n")
+        all_labels += [("polysilicon", x_coord + 5, y_coord - 5, x_coord + 5, y_coord - 5, 0, "4")]
     y_coord -= 8
 
   # Produce metal1
@@ -136,9 +154,11 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
         if top_row[leftedge] == wire:
           f.write("rect " + str(x_coord_left) + " " + str(y_coord) + " " + str(x_coord_left + 1) + " " + str(y_coord_top) + "\n")
           wire_length += length_of_wire(x_coord_left, y_coord, x_coord_left + 1, y_coord_top + 1)
+          all_labels += [("metal2", x_coord_left, y_coord + 1, x_coord_left, y_coord + 1, 0, "net=" + str(wire))]
         if bottom_row[leftedge] == wire:
           f.write("rect " + str(x_coord_left) + " " + str(y_coord_bottom + 1) + " " + str(x_coord_left + 1) + " " + str(y_coord + 1) + "\n")
           wire_length += length_of_wire(x_coord_left, y_coord_bottom + 1, x_coord_left + 1, y_coord + 1)
+          all_labels += [("metal2", x_coord_left, y_coord + 1, x_coord_left, y_coord + 1, 0, "net=" + str(wire))]
         # Rightedge is where we do dogleg, so we need to keep track of whether
         # the right edge went all the way down to the bottom
         did_rightedge = False
@@ -171,6 +191,10 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
     y_coord -= 9
     y_coord_top = y_coord + 2
     y_coord_bottom = y_coord
+
+  f.write("<< labels >>\n")
+  for label in all_labels:
+    f.write("rlabel " + label[0] + " " + str(label[1]) + " " + str(label[2]) + " " + str(label[3]) + " " + str(label[4]) + " " + str(label[5]) + " " + str(label[6]) + "\n")
 
   f.write("<< end >>\n")
   f.close()
