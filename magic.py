@@ -1,8 +1,13 @@
 import time
 
+def length_of_wire(x_min, y_min, x_max, y_max):
+  return (x_max - x_min) * (y_max - y_min)
+
 def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge, outfile):
   # Initialize timer
   start = time.time()
+  num_vias = 0
+  wire_length = 0
   # Append .mag to the output file if we don't get one
   if not outfile.endswith(".mag"):
     outfile += ".mag"
@@ -69,6 +74,7 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
     y_coord -= 8
 
   # Produce metal1
+  vias = []
   f.write("<< metal1 >>\n")
   y_coord = 0
   for idx, channel in enumerate(all_channels):
@@ -83,8 +89,17 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
         if net_to_rightedge[idx][wire] % 2 == 1:
           x_coord_right += 3
         f.write("rect " + str(x_coord_left) + " " + str(y_coord) + " " + str(x_coord_right + 1) + " " + str(y_coord + 1) + "\n")
+        num_vias += 2
+        wire_length += length_of_wire(x_coord_left, y_coord, x_coord_right, y_coord + 1)
+        vias += [(x_coord_left, y_coord, x_coord_left + 1, y_coord + 1)]
+        vias += [(x_coord_right, y_coord, x_coord_right + 1, y_coord + 1)]
       y_coord -= 2
     y_coord -= 9
+
+  # Produce vias
+  f.write("<< m2contact >>\n")
+  for via in vias:
+    f.write("rect " + str(via[0]) + " " + str(via[1]) + " " + str(via[2]) + " " + str(via[3]) + "\n")
 
   # Produce metal2
   # This is by far the messiest function
@@ -117,17 +132,21 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
         # Print leftedge
         # This section won't be activated on the bottom-right of the dogleg
         if top_row[leftedge] == wire:
-          f.write("rect " + str(x_coord_left) + " " + str(y_coord) + " " + str(x_coord_left + 1) + " " + str(y_coord_top + 1) + "\n")
+          f.write("rect " + str(x_coord_left) + " " + str(y_coord) + " " + str(x_coord_left + 1) + " " + str(y_coord_top) + "\n")
+          wire_length += length_of_wire(x_coord_left, y_coord, x_coord_left + 1, y_coord_top + 1)
         if bottom_row[leftedge] == wire:
-          f.write("rect " + str(x_coord_left) + " " + str(y_coord_bottom) + " " + str(x_coord_left + 1) + " " + str(y_coord + 1) + "\n")
+          f.write("rect " + str(x_coord_left) + " " + str(y_coord_bottom + 1) + " " + str(x_coord_left + 1) + " " + str(y_coord + 1) + "\n")
+          wire_length += length_of_wire(x_coord_left, y_coord_bottom + 1, x_coord_left + 1, y_coord + 1)
         # Rightedge is where we do dogleg, so we need to keep track of whether
         # the right edge went all the way down to the bottom
         did_rightedge = False
         if top_row[rightedge] == wire:
-          f.write("rect " + str(x_coord_right) + " " + str(y_coord) + " " + str(x_coord_right + 1) + " " + str(y_coord_top + 1) + "\n")
+          f.write("rect " + str(x_coord_right) + " " + str(y_coord) + " " + str(x_coord_right + 1) + " " + str(y_coord_top) + "\n")
+          wire_length += length_of_wire(x_coord_right, y_coord, x_coord_right + 1, y_coord_top)
           did_rightedge = True
         if bottom_row[rightedge] == wire:
-          f.write("rect " + str(x_coord_right) + " " + str(y_coord_bottom) + " " + str(x_coord_right + 1) + " " + str(y_coord + 1) + "\n")
+          f.write("rect " + str(x_coord_right) + " " + str(y_coord_bottom + 1) + " " + str(x_coord_right + 1) + " " + str(y_coord + 1) + "\n")
+          wire_length += length_of_wire(x_coord_right, y_coord_bottom + 1, x_coord_right + 1, y_coord + 1)
           did_rightedge = True
         # If we didn't print a rightedge, it's a dogleg
         # All doglegs have a top-left and a bottom-right trunk
@@ -145,6 +164,7 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
                 break
               dogleg_y_bottom -= 2
             f.write("rect " + str(x_coord_right) + " " + str(dogleg_y_bottom) + " " + str(x_coord_right + 1) + " " + str(y_coord + 1) + "\n")
+            wire_length += length_of_wire(x_coord_right, dogleg_y_bottom, x_coord_right + 1, y_coord + 1)
       y_coord -= 2
     y_coord -= 9
     y_coord_top = y_coord + 2
@@ -154,4 +174,6 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
   f.close()
   # Time it!
   end = time.time()
+  print("Number of vias: " + str(num_vias))
+  print("Total wire length: " + str(wire_length))
   print("Time Elapsed: " + str(end - start)[:4] + " seconds.")
