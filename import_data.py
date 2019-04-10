@@ -16,6 +16,3 @@ def data_load(fn):
 		cells = row[:-1].split(" ")
 		connect_lst.add_net([int(x) for x in cells])
 	return connect_lst
-
-if __name__ == "__main__":
-	data_load("Example-Netlists/1")

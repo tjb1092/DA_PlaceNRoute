@@ -1,4 +1,4 @@
-
+# Data structures used for placement and routing.
 
 class Net:
 	def __init__(self, num):
@@ -15,6 +15,7 @@ class Cell:
 		self.nets = {}
 
 	def compute_place_loc(self, is2D):
+		# Calculate ideal placement location
 		num_x, num_y, denom = 0, 0, 0
 		for nbr in self.nbrs:
 
@@ -112,7 +113,7 @@ class ConnectivityList:
 					self.cells[cell].place_loc = (row, col)
 
 	def compute_place_cost(self):
-		# For each net, compute the rectilinear distance 
+		# For each net, compute the rectilinear distance
 		# between the two connected cells.
 		cost = 0
 		for net in self.nets.keys():

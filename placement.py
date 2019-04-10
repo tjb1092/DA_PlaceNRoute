@@ -1,5 +1,4 @@
 import time
-import matplotlib.pyplot as plt
 import copy
 #from pympler import classtracker
 from operator import itemgetter
