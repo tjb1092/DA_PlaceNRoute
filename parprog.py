@@ -10,6 +10,8 @@ import argparse
 
 def main():
 	# Needed for the specified command line arguments
+	total_time = time.time()
+
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-i', type=str, default="Example-Netlists/1",
 	                  help='What is the input filename?')
@@ -29,21 +31,20 @@ def main():
 
 	# Perform Placement
 	place_params = {"is2D":True, "iteration_count": 100, "abort_limit": round(0.3 * connect_lst.num_cells) }
-	cost, routing_lst, channel_lst, place_matrix = placement(connect_lst, place_params)
-	print(".")
-	print(".")
-	print(".")
+	cost, feedthrough_count, routing_lst, channel_lst, place_matrix = placement(connect_lst, place_params)
+	print(".\n.\n.")
+	
 	# Perform Routing
 	print("Begin Routing")
 	all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge = routing(routing_lst)
 	print("Routing Finished!")
-	print(".")
-	print(".")
-	print(".")
+	print(".\n.\n.")
 	# Write the solution to output file
 	print("Begin File Generation")
 	magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge, args.o, connect_lst, place_matrix)
 	print("File Generation Finished!")
+
+	print("Total Execution time: {:0.3f} seconds".format(time.time()-total_time))
 
 
 if __name__ == "__main__":

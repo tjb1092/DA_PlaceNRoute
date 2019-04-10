@@ -8,7 +8,6 @@ from collections import deque
 
 def init_placement(connect_lst, place_matrix):
 	l = len(place_matrix)
-	print("L: {}".format(l))
 	x, y, val = 0, 0, 1
 	while val <= connect_lst.num_cells:
 		place_matrix[x][y] = [val, False]
@@ -150,6 +149,8 @@ def force_directed_placement(connect_lst, place_matrix, place_params):
 	#connect_lst.update_locations(place_matrix)
 	cost = connect_lst.compute_place_cost()
 	print("\nFinal cost: {}".format(cost))
+
+	print("Placement took {:0.3f} seconds".format(time.time()-total_time))
 	return cost
 
 def construct_channel_lst(p_m_len):
@@ -165,6 +166,7 @@ def add_feedthrough(connect_lst, place_matrix, channel_lst):
 	# For each net, determine if a feedthrough cell needs to be place.
 	del_net_lst = []  # Will delete all of the needed nets after the loop that is dependent on them
 	current_nets = dict(connect_lst.nets)
+	feedthrough_count = 0  # Keep track of number of added feedthrough cells.
 	for net in current_nets.values():
 		cell1, term1 =  net.terminals[0]
 		cell2, term2 = net.terminals[1]
@@ -194,23 +196,23 @@ def add_feedthrough(connect_lst, place_matrix, channel_lst):
 				splice_net = spliced_net2.terminals  # already ordered from top->bot
 				net_num = spliced_net2.num
 
+				feedthrough_count += 1
+
 	# determine the longest row
 	l = 0
 	for row in place_matrix:
 		if len(row) > l:
 			l = len(row)
 	cell_num = len(place_matrix)
-	print("old len {}".format(cell_num * 6))
+	print("Width after adding feedthroughs: {} lambda".format(l*6))
 
-	ft_num = l - len(place_matrix)
-	print("new len {}".format(cell_num * 6 + ft_num * 3))
 	for row in range(len(place_matrix)):
-		# for each row, append dummy cells till it's square
-		while len(place_matrix[row]) < l:
-			ft_cell  = connect_lst.add_feedthrough_cell()
-			place_matrix[row].append([ft_cell, False])  # Append to appropriate row
-			connect_lst.cells[ft_cell].place_loc = (row, len(place_matrix[row])-1) # Update FT cell with coordinates
-		place_matrix[row].append([0, False])
+		# for each row, append vacant spots till it's rectangular
+		while len(place_matrix[row]) <= l:
+			# make each row l+1 long.
+			#This ensures that there is at least one vacant position per row for placement.
+			place_matrix[row].append([0, False])
+	return feedthrough_count
 
 def construct_routing_lst(connect_lst, place_matrix, channel_lst):
 	# each row should have the net #
@@ -245,16 +247,6 @@ def construct_routing_lst(connect_lst, place_matrix, channel_lst):
 				col += 1
 
 			routing_lst[row][col] = net.num
-		"""
-		#debug
-		for row in place_matrix:
-			print(row)
-		for row in routing_lst:
-			print(row)
-		print(net.num, net.terminals)
-		input("pause")
-		"""
-
 	return routing_lst
 
 def placement(connect_lst, place_params):
@@ -263,7 +255,6 @@ def placement(connect_lst, place_params):
 	x = 1
 	while x**2 < connect_lst.num_cells:
 		x += 1
-	print("x = {}".format(x))
 
 	# [cell num, locked]. num = 0 = vacant
 	place_matrix = [[[0, False] for i in range(x)] for j in range(x)]  # Instantiate a 2-D list matrix
@@ -274,11 +265,13 @@ def placement(connect_lst, place_params):
 	# Execute force-directed placement engine.
 	print("Starting 1st Placement")
 	cost = force_directed_placement(connect_lst, place_matrix, place_params)
+	print(".\n.\n.")
 
 	channel_lst = construct_channel_lst(len(place_matrix))
 
 	# Based on row-placement, add feedthrough cells to allow for proper channel routing.
-	add_feedthrough(connect_lst, place_matrix, channel_lst)
+	feedthrough_count = add_feedthrough(connect_lst, place_matrix, channel_lst)
+	print("Number of feedthrough cells added: {}".format(feedthrough_count))
 
 	print("Starting 2nd Placement")
 	place_params["is2D"] = False
@@ -289,4 +282,4 @@ def placement(connect_lst, place_params):
 	print("routing dim: ({}, {})".format(len(routing_lst), len(routing_lst[0])))
 
 	print("Placement Finished!")
-	return cost, routing_lst, channel_lst, place_matrix
+	return cost, feedthrough_count, routing_lst, channel_lst, place_matrix
