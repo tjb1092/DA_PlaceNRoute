@@ -1,0 +1,1246 @@
+magic
+tech scmos
+timestamp 1555015438 
+<< pdiffusion >>
+rect 1 -10 7 -4
+rect 22 -10 25 -4
+rect 29 -10 32 -4
+rect 36 -10 42 -4
+rect 43 -10 49 -4
+rect 50 -10 56 -4
+rect 57 -10 60 -4
+rect 64 -10 70 -4
+rect 71 -10 74 -4
+rect 1 -27 4 -21
+rect 8 -27 14 -21
+rect 15 -27 21 -21
+rect 22 -27 25 -21
+rect 29 -27 32 -21
+rect 36 -27 42 -21
+rect 43 -27 49 -21
+rect 50 -27 53 -21
+rect 57 -27 63 -21
+rect 64 -27 70 -21
+rect 71 -27 74 -21
+rect 1 -58 7 -52
+rect 8 -58 14 -52
+rect 15 -58 21 -52
+rect 22 -58 28 -52
+rect 29 -58 35 -52
+rect 36 -58 39 -52
+rect 43 -58 49 -52
+rect 50 -58 53 -52
+rect 57 -58 60 -52
+rect 64 -58 70 -52
+rect 71 -58 74 -52
+rect 78 -58 81 -52
+rect 85 -58 88 -52
+rect 92 -58 95 -52
+rect 99 -58 102 -52
+rect 106 -58 109 -52
+rect 113 -58 116 -52
+rect 1 -83 4 -77
+rect 8 -83 11 -77
+rect 15 -83 21 -77
+rect 22 -83 28 -77
+rect 29 -83 35 -77
+rect 36 -83 39 -77
+rect 43 -83 46 -77
+rect 50 -83 56 -77
+rect 57 -83 63 -77
+rect 64 -83 67 -77
+rect 71 -83 74 -77
+rect 78 -83 81 -77
+rect 85 -83 88 -77
+rect 92 -83 95 -77
+rect 99 -83 105 -77
+rect 106 -83 109 -77
+rect 113 -83 116 -77
+rect 1 -114 4 -108
+rect 8 -114 14 -108
+rect 15 -114 18 -108
+rect 22 -114 25 -108
+rect 29 -114 32 -108
+rect 36 -114 42 -108
+rect 43 -114 49 -108
+rect 50 -114 56 -108
+rect 57 -114 63 -108
+rect 64 -114 70 -108
+rect 71 -114 74 -108
+rect 78 -114 84 -108
+rect 85 -114 88 -108
+rect 92 -114 95 -108
+rect 99 -114 102 -108
+rect 106 -114 109 -108
+rect 113 -114 116 -108
+rect 120 -114 123 -108
+rect 1 -143 7 -137
+rect 8 -143 11 -137
+rect 15 -143 21 -137
+rect 22 -143 25 -137
+rect 29 -143 35 -137
+rect 36 -143 42 -137
+rect 43 -143 49 -137
+rect 50 -143 53 -137
+rect 57 -143 60 -137
+rect 64 -143 70 -137
+rect 71 -143 77 -137
+rect 78 -143 81 -137
+rect 85 -143 88 -137
+rect 92 -143 95 -137
+rect 99 -143 102 -137
+rect 106 -143 109 -137
+rect 113 -143 116 -137
+rect 120 -143 123 -137
+rect 127 -143 130 -137
+rect 8 -164 14 -158
+rect 15 -164 18 -158
+rect 22 -164 28 -158
+rect 29 -164 35 -158
+rect 36 -164 39 -158
+rect 50 -164 53 -158
+rect 57 -164 60 -158
+rect 64 -164 70 -158
+rect 71 -164 77 -158
+rect 85 -164 91 -158
+rect 92 -164 98 -158
+rect 106 -164 109 -158
+<< polysilicon >>
+rect 23 -5 24 -3
+rect 23 -11 24 -9
+rect 30 -5 31 -3
+rect 30 -11 31 -9
+rect 37 -5 38 -3
+rect 40 -11 41 -9
+rect 44 -5 45 -3
+rect 47 -5 48 -3
+rect 47 -11 48 -9
+rect 51 -5 52 -3
+rect 51 -11 52 -9
+rect 58 -5 59 -3
+rect 58 -11 59 -9
+rect 65 -11 66 -9
+rect 72 -5 73 -3
+rect 72 -11 73 -9
+rect 2 -22 3 -20
+rect 2 -28 3 -26
+rect 19 -22 20 -20
+rect 23 -22 24 -20
+rect 23 -28 24 -26
+rect 30 -22 31 -20
+rect 30 -28 31 -26
+rect 37 -22 38 -20
+rect 37 -28 38 -26
+rect 47 -22 48 -20
+rect 47 -28 48 -26
+rect 51 -22 52 -20
+rect 51 -28 52 -26
+rect 58 -22 59 -20
+rect 58 -28 59 -26
+rect 68 -22 69 -20
+rect 65 -28 66 -26
+rect 68 -28 69 -26
+rect 72 -22 73 -20
+rect 72 -28 73 -26
+rect 9 -53 10 -51
+rect 12 -53 13 -51
+rect 19 -59 20 -57
+rect 23 -53 24 -51
+rect 26 -53 27 -51
+rect 30 -53 31 -51
+rect 33 -53 34 -51
+rect 30 -59 31 -57
+rect 33 -59 34 -57
+rect 37 -53 38 -51
+rect 37 -59 38 -57
+rect 44 -53 45 -51
+rect 44 -59 45 -57
+rect 47 -59 48 -57
+rect 51 -53 52 -51
+rect 51 -59 52 -57
+rect 58 -53 59 -51
+rect 58 -59 59 -57
+rect 65 -53 66 -51
+rect 65 -59 66 -57
+rect 68 -59 69 -57
+rect 72 -53 73 -51
+rect 72 -59 73 -57
+rect 79 -53 80 -51
+rect 79 -59 80 -57
+rect 86 -53 87 -51
+rect 86 -59 87 -57
+rect 93 -53 94 -51
+rect 93 -59 94 -57
+rect 100 -53 101 -51
+rect 100 -59 101 -57
+rect 107 -53 108 -51
+rect 107 -59 108 -57
+rect 114 -53 115 -51
+rect 114 -59 115 -57
+rect 2 -78 3 -76
+rect 2 -84 3 -82
+rect 9 -78 10 -76
+rect 9 -84 10 -82
+rect 19 -78 20 -76
+rect 16 -84 17 -82
+rect 23 -78 24 -76
+rect 23 -84 24 -82
+rect 26 -84 27 -82
+rect 33 -78 34 -76
+rect 30 -84 31 -82
+rect 33 -84 34 -82
+rect 37 -78 38 -76
+rect 37 -84 38 -82
+rect 44 -78 45 -76
+rect 44 -84 45 -82
+rect 51 -78 52 -76
+rect 51 -84 52 -82
+rect 54 -84 55 -82
+rect 58 -78 59 -76
+rect 58 -84 59 -82
+rect 65 -78 66 -76
+rect 65 -84 66 -82
+rect 72 -78 73 -76
+rect 72 -84 73 -82
+rect 79 -78 80 -76
+rect 79 -84 80 -82
+rect 86 -78 87 -76
+rect 86 -84 87 -82
+rect 93 -78 94 -76
+rect 93 -84 94 -82
+rect 103 -78 104 -76
+rect 100 -84 101 -82
+rect 107 -78 108 -76
+rect 107 -84 108 -82
+rect 114 -78 115 -76
+rect 114 -84 115 -82
+rect 2 -109 3 -107
+rect 2 -115 3 -113
+rect 12 -109 13 -107
+rect 12 -115 13 -113
+rect 16 -109 17 -107
+rect 16 -115 17 -113
+rect 23 -109 24 -107
+rect 23 -115 24 -113
+rect 30 -109 31 -107
+rect 30 -115 31 -113
+rect 37 -109 38 -107
+rect 40 -115 41 -113
+rect 44 -109 45 -107
+rect 47 -109 48 -107
+rect 54 -109 55 -107
+rect 51 -115 52 -113
+rect 54 -115 55 -113
+rect 58 -109 59 -107
+rect 61 -109 62 -107
+rect 65 -109 66 -107
+rect 68 -109 69 -107
+rect 65 -115 66 -113
+rect 68 -115 69 -113
+rect 72 -109 73 -107
+rect 72 -115 73 -113
+rect 79 -109 80 -107
+rect 82 -109 83 -107
+rect 86 -109 87 -107
+rect 86 -115 87 -113
+rect 93 -109 94 -107
+rect 93 -115 94 -113
+rect 100 -109 101 -107
+rect 100 -115 101 -113
+rect 107 -109 108 -107
+rect 107 -115 108 -113
+rect 114 -109 115 -107
+rect 114 -115 115 -113
+rect 121 -109 122 -107
+rect 121 -115 122 -113
+rect 9 -138 10 -136
+rect 9 -144 10 -142
+rect 16 -144 17 -142
+rect 23 -138 24 -136
+rect 23 -144 24 -142
+rect 30 -138 31 -136
+rect 37 -138 38 -136
+rect 40 -138 41 -136
+rect 37 -144 38 -142
+rect 44 -138 45 -136
+rect 47 -138 48 -136
+rect 47 -144 48 -142
+rect 51 -138 52 -136
+rect 51 -144 52 -142
+rect 58 -138 59 -136
+rect 58 -144 59 -142
+rect 68 -138 69 -136
+rect 68 -144 69 -142
+rect 75 -138 76 -136
+rect 72 -144 73 -142
+rect 75 -144 76 -142
+rect 79 -138 80 -136
+rect 79 -144 80 -142
+rect 86 -138 87 -136
+rect 86 -144 87 -142
+rect 93 -138 94 -136
+rect 93 -144 94 -142
+rect 100 -138 101 -136
+rect 100 -144 101 -142
+rect 107 -138 108 -136
+rect 107 -144 108 -142
+rect 114 -138 115 -136
+rect 114 -144 115 -142
+rect 121 -138 122 -136
+rect 121 -144 122 -142
+rect 128 -138 129 -136
+rect 128 -144 129 -142
+rect 9 -159 10 -157
+rect 12 -159 13 -157
+rect 16 -159 17 -157
+rect 16 -165 17 -163
+rect 23 -159 24 -157
+rect 23 -165 24 -163
+rect 26 -165 27 -163
+rect 30 -159 31 -157
+rect 33 -165 34 -163
+rect 37 -159 38 -157
+rect 37 -165 38 -163
+rect 51 -159 52 -157
+rect 51 -165 52 -163
+rect 58 -159 59 -157
+rect 58 -165 59 -163
+rect 68 -165 69 -163
+rect 75 -159 76 -157
+rect 89 -159 90 -157
+rect 93 -159 94 -157
+rect 93 -165 94 -163
+rect 107 -159 108 -157
+rect 107 -165 108 -163
+<< metal1 >>
+rect 23 0 38 1
+rect 44 0 59 1
+rect 30 -2 48 -1
+rect 51 -2 73 -1
+rect 2 -13 20 -12
+rect 30 -13 38 -12
+rect 40 -13 48 -12
+rect 51 -13 69 -12
+rect 23 -15 31 -14
+rect 65 -15 73 -14
+rect 23 -17 48 -16
+rect 58 -17 73 -16
+rect 51 -19 59 -18
+rect 2 -30 27 -29
+rect 33 -30 66 -29
+rect 68 -30 108 -29
+rect 12 -32 94 -31
+rect 44 -34 115 -33
+rect 47 -36 101 -35
+rect 65 -38 87 -37
+rect 72 -40 80 -39
+rect 58 -42 73 -41
+rect 51 -44 59 -43
+rect 30 -46 52 -45
+rect 30 -48 38 -47
+rect 9 -50 38 -49
+rect 2 -61 48 -60
+rect 65 -61 108 -60
+rect 9 -63 24 -62
+rect 33 -63 108 -62
+rect 19 -65 94 -64
+rect 19 -67 31 -66
+rect 33 -67 45 -66
+rect 58 -67 66 -66
+rect 68 -67 115 -66
+rect 37 -69 45 -68
+rect 79 -69 94 -68
+rect 103 -69 115 -68
+rect 37 -71 59 -70
+rect 72 -71 80 -70
+rect 51 -73 73 -72
+rect 51 -75 101 -74
+rect 2 -86 17 -85
+rect 30 -86 80 -85
+rect 82 -86 108 -85
+rect 9 -88 27 -87
+rect 44 -88 55 -87
+rect 58 -88 94 -87
+rect 100 -88 115 -87
+rect 2 -90 59 -89
+rect 65 -90 94 -89
+rect 12 -92 122 -91
+rect 16 -94 48 -93
+rect 51 -94 69 -93
+rect 79 -94 108 -93
+rect 23 -96 55 -95
+rect 86 -96 101 -95
+rect 23 -98 38 -97
+rect 65 -98 87 -97
+rect 30 -100 45 -99
+rect 33 -102 115 -101
+rect 37 -104 73 -103
+rect 61 -106 73 -105
+rect 2 -117 59 -116
+rect 65 -117 101 -116
+rect 121 -117 129 -116
+rect 12 -119 24 -118
+rect 37 -119 115 -118
+rect 16 -121 41 -120
+rect 44 -121 69 -120
+rect 72 -121 101 -120
+rect 23 -123 48 -122
+rect 51 -123 94 -122
+rect 30 -125 52 -124
+rect 54 -125 115 -124
+rect 9 -127 31 -126
+rect 68 -127 122 -126
+rect 75 -129 94 -128
+rect 79 -131 108 -130
+rect 40 -133 108 -132
+rect 16 -146 59 -145
+rect 72 -146 101 -145
+rect 12 -148 17 -147
+rect 30 -148 115 -147
+rect 37 -150 48 -149
+rect 51 -150 69 -149
+rect 75 -150 87 -149
+rect 89 -150 129 -149
+rect 23 -152 52 -151
+rect 58 -152 80 -151
+rect 9 -154 24 -153
+rect 75 -154 108 -153
+rect 9 -156 38 -155
+rect 107 -156 122 -155
+rect 16 -167 24 -166
+rect 26 -167 52 -166
+rect 58 -167 69 -166
+rect 93 -167 108 -166
+rect 33 -169 38 -168
+<< m2contact >>
+rect 23 0 24 1
+rect 37 0 38 1
+rect 44 0 45 1
+rect 58 0 59 1
+rect 30 -2 31 -1
+rect 47 -2 48 -1
+rect 51 -2 52 -1
+rect 72 -2 73 -1
+rect 2 -13 3 -12
+rect 19 -13 20 -12
+rect 30 -13 31 -12
+rect 37 -13 38 -12
+rect 40 -13 41 -12
+rect 47 -13 48 -12
+rect 51 -13 52 -12
+rect 68 -13 69 -12
+rect 23 -15 24 -14
+rect 30 -15 31 -14
+rect 65 -15 66 -14
+rect 72 -15 73 -14
+rect 23 -17 24 -16
+rect 47 -17 48 -16
+rect 58 -17 59 -16
+rect 72 -17 73 -16
+rect 51 -19 52 -18
+rect 58 -19 59 -18
+rect 2 -30 3 -29
+rect 26 -30 27 -29
+rect 33 -30 34 -29
+rect 65 -30 66 -29
+rect 68 -30 69 -29
+rect 107 -30 108 -29
+rect 12 -32 13 -31
+rect 93 -32 94 -31
+rect 44 -34 45 -33
+rect 114 -34 115 -33
+rect 47 -36 48 -35
+rect 100 -36 101 -35
+rect 65 -38 66 -37
+rect 86 -38 87 -37
+rect 72 -40 73 -39
+rect 79 -40 80 -39
+rect 58 -42 59 -41
+rect 72 -42 73 -41
+rect 51 -44 52 -43
+rect 58 -44 59 -43
+rect 30 -46 31 -45
+rect 51 -46 52 -45
+rect 30 -48 31 -47
+rect 37 -48 38 -47
+rect 9 -50 10 -49
+rect 37 -50 38 -49
+rect 2 -61 3 -60
+rect 47 -61 48 -60
+rect 65 -61 66 -60
+rect 107 -61 108 -60
+rect 9 -63 10 -62
+rect 23 -63 24 -62
+rect 33 -63 34 -62
+rect 107 -63 108 -62
+rect 19 -65 20 -64
+rect 93 -65 94 -64
+rect 19 -67 20 -66
+rect 30 -67 31 -66
+rect 33 -67 34 -66
+rect 44 -67 45 -66
+rect 58 -67 59 -66
+rect 65 -67 66 -66
+rect 68 -67 69 -66
+rect 114 -67 115 -66
+rect 37 -69 38 -68
+rect 44 -69 45 -68
+rect 79 -69 80 -68
+rect 93 -69 94 -68
+rect 103 -69 104 -68
+rect 114 -69 115 -68
+rect 37 -71 38 -70
+rect 58 -71 59 -70
+rect 72 -71 73 -70
+rect 79 -71 80 -70
+rect 51 -73 52 -72
+rect 72 -73 73 -72
+rect 51 -75 52 -74
+rect 100 -75 101 -74
+rect 2 -86 3 -85
+rect 16 -86 17 -85
+rect 30 -86 31 -85
+rect 79 -86 80 -85
+rect 82 -86 83 -85
+rect 107 -86 108 -85
+rect 9 -88 10 -87
+rect 26 -88 27 -87
+rect 44 -88 45 -87
+rect 54 -88 55 -87
+rect 58 -88 59 -87
+rect 93 -88 94 -87
+rect 100 -88 101 -87
+rect 114 -88 115 -87
+rect 2 -90 3 -89
+rect 58 -90 59 -89
+rect 65 -90 66 -89
+rect 93 -90 94 -89
+rect 12 -92 13 -91
+rect 121 -92 122 -91
+rect 16 -94 17 -93
+rect 47 -94 48 -93
+rect 51 -94 52 -93
+rect 68 -94 69 -93
+rect 79 -94 80 -93
+rect 107 -94 108 -93
+rect 23 -96 24 -95
+rect 54 -96 55 -95
+rect 86 -96 87 -95
+rect 100 -96 101 -95
+rect 23 -98 24 -97
+rect 37 -98 38 -97
+rect 65 -98 66 -97
+rect 86 -98 87 -97
+rect 30 -100 31 -99
+rect 44 -100 45 -99
+rect 33 -102 34 -101
+rect 114 -102 115 -101
+rect 37 -104 38 -103
+rect 72 -104 73 -103
+rect 61 -106 62 -105
+rect 72 -106 73 -105
+rect 2 -117 3 -116
+rect 58 -117 59 -116
+rect 65 -117 66 -116
+rect 100 -117 101 -116
+rect 121 -117 122 -116
+rect 128 -117 129 -116
+rect 12 -119 13 -118
+rect 23 -119 24 -118
+rect 37 -119 38 -118
+rect 114 -119 115 -118
+rect 16 -121 17 -120
+rect 40 -121 41 -120
+rect 44 -121 45 -120
+rect 68 -121 69 -120
+rect 72 -121 73 -120
+rect 100 -121 101 -120
+rect 23 -123 24 -122
+rect 47 -123 48 -122
+rect 51 -123 52 -122
+rect 93 -123 94 -122
+rect 30 -125 31 -124
+rect 51 -125 52 -124
+rect 54 -125 55 -124
+rect 114 -125 115 -124
+rect 9 -127 10 -126
+rect 30 -127 31 -126
+rect 68 -127 69 -126
+rect 121 -127 122 -126
+rect 75 -129 76 -128
+rect 93 -129 94 -128
+rect 79 -131 80 -130
+rect 107 -131 108 -130
+rect 40 -133 41 -132
+rect 107 -133 108 -132
+rect 16 -146 17 -145
+rect 58 -146 59 -145
+rect 72 -146 73 -145
+rect 100 -146 101 -145
+rect 12 -148 13 -147
+rect 16 -148 17 -147
+rect 30 -148 31 -147
+rect 114 -148 115 -147
+rect 37 -150 38 -149
+rect 47 -150 48 -149
+rect 51 -150 52 -149
+rect 68 -150 69 -149
+rect 75 -150 76 -149
+rect 86 -150 87 -149
+rect 89 -150 90 -149
+rect 128 -150 129 -149
+rect 23 -152 24 -151
+rect 51 -152 52 -151
+rect 58 -152 59 -151
+rect 79 -152 80 -151
+rect 9 -154 10 -153
+rect 23 -154 24 -153
+rect 75 -154 76 -153
+rect 107 -154 108 -153
+rect 9 -156 10 -155
+rect 37 -156 38 -155
+rect 107 -156 108 -155
+rect 121 -156 122 -155
+rect 16 -167 17 -166
+rect 23 -167 24 -166
+rect 26 -167 27 -166
+rect 51 -167 52 -166
+rect 58 -167 59 -166
+rect 68 -167 69 -166
+rect 93 -167 94 -166
+rect 107 -167 108 -166
+rect 33 -169 34 -168
+rect 37 -169 38 -168
+<< metal2 >>
+rect 23 -3 24 1
+rect 37 -3 38 1
+rect 44 -3 45 1
+rect 58 -3 59 1
+rect 30 -3 31 -1
+rect 47 -3 48 -1
+rect 51 -3 52 -1
+rect 72 -3 73 -1
+rect 2 -20 3 -12
+rect 19 -20 20 -12
+rect 30 -13 31 -11
+rect 37 -20 38 -12
+rect 40 -13 41 -11
+rect 47 -13 48 -11
+rect 51 -13 52 -11
+rect 68 -20 69 -12
+rect 23 -15 24 -11
+rect 30 -20 31 -14
+rect 65 -15 66 -11
+rect 72 -15 73 -11
+rect 23 -20 24 -16
+rect 47 -20 48 -16
+rect 58 -17 59 -11
+rect 72 -20 73 -16
+rect 51 -20 52 -18
+rect 58 -20 59 -18
+rect 2 -30 3 -28
+rect 26 -51 27 -29
+rect 33 -51 34 -29
+rect 65 -30 66 -28
+rect 68 -30 69 -28
+rect 107 -51 108 -29
+rect 12 -51 13 -31
+rect 93 -51 94 -31
+rect 23 -34 24 -28
+rect 23 -51 24 -33
+rect 23 -34 24 -28
+rect 23 -51 24 -33
+rect 44 -51 45 -33
+rect 114 -51 115 -33
+rect 47 -36 48 -28
+rect 100 -51 101 -35
+rect 65 -51 66 -37
+rect 86 -51 87 -37
+rect 72 -40 73 -28
+rect 79 -51 80 -39
+rect 58 -42 59 -28
+rect 72 -51 73 -41
+rect 51 -44 52 -28
+rect 58 -51 59 -43
+rect 30 -46 31 -28
+rect 51 -51 52 -45
+rect 30 -51 31 -47
+rect 37 -48 38 -28
+rect 9 -51 10 -49
+rect 37 -51 38 -49
+rect 2 -76 3 -60
+rect 47 -61 48 -59
+rect 65 -61 66 -59
+rect 107 -61 108 -59
+rect 9 -76 10 -62
+rect 23 -76 24 -62
+rect 33 -63 34 -59
+rect 107 -76 108 -62
+rect 19 -65 20 -59
+rect 93 -65 94 -59
+rect 19 -76 20 -66
+rect 30 -67 31 -59
+rect 33 -76 34 -66
+rect 44 -67 45 -59
+rect 58 -67 59 -59
+rect 65 -76 66 -66
+rect 68 -67 69 -59
+rect 114 -67 115 -59
+rect 37 -69 38 -59
+rect 44 -76 45 -68
+rect 79 -69 80 -59
+rect 93 -76 94 -68
+rect 103 -76 104 -68
+rect 114 -76 115 -68
+rect 37 -76 38 -70
+rect 58 -76 59 -70
+rect 72 -71 73 -59
+rect 79 -76 80 -70
+rect 86 -71 87 -59
+rect 86 -76 87 -70
+rect 86 -71 87 -59
+rect 86 -76 87 -70
+rect 51 -73 52 -59
+rect 72 -76 73 -72
+rect 51 -76 52 -74
+rect 100 -75 101 -59
+rect 2 -86 3 -84
+rect 16 -86 17 -84
+rect 30 -86 31 -84
+rect 79 -86 80 -84
+rect 82 -107 83 -85
+rect 107 -86 108 -84
+rect 9 -88 10 -84
+rect 26 -88 27 -84
+rect 44 -88 45 -84
+rect 54 -88 55 -84
+rect 58 -88 59 -84
+rect 93 -88 94 -84
+rect 100 -88 101 -84
+rect 114 -88 115 -84
+rect 2 -107 3 -89
+rect 58 -107 59 -89
+rect 65 -90 66 -84
+rect 93 -107 94 -89
+rect 12 -107 13 -91
+rect 121 -107 122 -91
+rect 16 -107 17 -93
+rect 47 -107 48 -93
+rect 51 -94 52 -84
+rect 68 -107 69 -93
+rect 79 -107 80 -93
+rect 107 -107 108 -93
+rect 23 -96 24 -84
+rect 54 -107 55 -95
+rect 86 -96 87 -84
+rect 100 -107 101 -95
+rect 23 -107 24 -97
+rect 37 -98 38 -84
+rect 65 -107 66 -97
+rect 86 -107 87 -97
+rect 30 -107 31 -99
+rect 44 -107 45 -99
+rect 33 -102 34 -84
+rect 114 -107 115 -101
+rect 37 -107 38 -103
+rect 72 -104 73 -84
+rect 61 -107 62 -105
+rect 72 -107 73 -105
+rect 2 -117 3 -115
+rect 58 -136 59 -116
+rect 65 -117 66 -115
+rect 100 -117 101 -115
+rect 121 -117 122 -115
+rect 128 -136 129 -116
+rect 12 -119 13 -115
+rect 23 -119 24 -115
+rect 37 -136 38 -118
+rect 114 -119 115 -115
+rect 16 -121 17 -115
+rect 40 -121 41 -115
+rect 44 -136 45 -120
+rect 68 -121 69 -115
+rect 72 -121 73 -115
+rect 100 -136 101 -120
+rect 23 -136 24 -122
+rect 47 -136 48 -122
+rect 51 -123 52 -115
+rect 93 -123 94 -115
+rect 30 -125 31 -115
+rect 51 -136 52 -124
+rect 54 -125 55 -115
+rect 114 -136 115 -124
+rect 9 -136 10 -126
+rect 30 -136 31 -126
+rect 68 -136 69 -126
+rect 121 -136 122 -126
+rect 75 -136 76 -128
+rect 93 -136 94 -128
+rect 79 -136 80 -130
+rect 107 -131 108 -115
+rect 40 -136 41 -132
+rect 107 -136 108 -132
+rect 86 -135 87 -115
+rect 86 -136 87 -134
+rect 86 -135 87 -115
+rect 86 -136 87 -134
+rect 16 -146 17 -144
+rect 58 -146 59 -144
+rect 72 -146 73 -144
+rect 100 -146 101 -144
+rect 12 -157 13 -147
+rect 16 -157 17 -147
+rect 30 -157 31 -147
+rect 114 -148 115 -144
+rect 37 -150 38 -144
+rect 47 -150 48 -144
+rect 51 -150 52 -144
+rect 68 -150 69 -144
+rect 75 -150 76 -144
+rect 86 -150 87 -144
+rect 89 -157 90 -149
+rect 128 -150 129 -144
+rect 23 -152 24 -144
+rect 51 -157 52 -151
+rect 58 -157 59 -151
+rect 79 -152 80 -144
+rect 93 -152 94 -144
+rect 93 -157 94 -151
+rect 93 -152 94 -144
+rect 93 -157 94 -151
+rect 9 -154 10 -144
+rect 23 -157 24 -153
+rect 75 -157 76 -153
+rect 107 -154 108 -144
+rect 9 -157 10 -155
+rect 37 -157 38 -155
+rect 107 -157 108 -155
+rect 121 -156 122 -144
+rect 16 -167 17 -165
+rect 23 -167 24 -165
+rect 26 -167 27 -165
+rect 51 -167 52 -165
+rect 58 -167 59 -165
+rect 68 -167 69 -165
+rect 93 -167 94 -165
+rect 107 -167 108 -165
+rect 33 -169 34 -165
+rect 37 -169 38 -165
+<< labels >>
+rlabel pdiffusion 3 -8 3 -8 0 cellNo=10
+rlabel pdiffusion 24 -8 24 -8 0 feedthrough
+rlabel pdiffusion 31 -8 31 -8 0 feedthrough
+rlabel pdiffusion 38 -8 38 -8 0 cellNo=15
+rlabel pdiffusion 45 -8 45 -8 0 cellNo=14
+rlabel pdiffusion 52 -8 52 -8 0 cellNo=24
+rlabel pdiffusion 59 -8 59 -8 0 feedthrough
+rlabel pdiffusion 66 -8 66 -8 0 cellNo=6
+rlabel pdiffusion 73 -8 73 -8 0 feedthrough
+rlabel pdiffusion 3 -25 3 -25 0 feedthrough
+rlabel pdiffusion 10 -25 10 -25 0 cellNo=12
+rlabel pdiffusion 17 -25 17 -25 0 cellNo=18
+rlabel pdiffusion 24 -25 24 -25 0 feedthrough
+rlabel pdiffusion 31 -25 31 -25 0 feedthrough
+rlabel pdiffusion 38 -25 38 -25 0 cellNo=2
+rlabel pdiffusion 45 -25 45 -25 0 cellNo=7
+rlabel pdiffusion 52 -25 52 -25 0 feedthrough
+rlabel pdiffusion 59 -25 59 -25 0 cellNo=33
+rlabel pdiffusion 66 -25 66 -25 0 cellNo=11
+rlabel pdiffusion 73 -25 73 -25 0 feedthrough
+rlabel pdiffusion 3 -56 3 -56 0 cellNo=17
+rlabel pdiffusion 10 -56 10 -56 0 cellNo=35
+rlabel pdiffusion 17 -56 17 -56 0 cellNo=30
+rlabel pdiffusion 24 -56 24 -56 0 cellNo=4
+rlabel pdiffusion 31 -56 31 -56 0 cellNo=23
+rlabel pdiffusion 38 -56 38 -56 0 feedthrough
+rlabel pdiffusion 45 -56 45 -56 0 cellNo=32
+rlabel pdiffusion 52 -56 52 -56 0 feedthrough
+rlabel pdiffusion 59 -56 59 -56 0 feedthrough
+rlabel pdiffusion 66 -56 66 -56 0 cellNo=36
+rlabel pdiffusion 73 -56 73 -56 0 feedthrough
+rlabel pdiffusion 80 -56 80 -56 0 feedthrough
+rlabel pdiffusion 87 -56 87 -56 0 feedthrough
+rlabel pdiffusion 94 -56 94 -56 0 feedthrough
+rlabel pdiffusion 101 -56 101 -56 0 feedthrough
+rlabel pdiffusion 108 -56 108 -56 0 feedthrough
+rlabel pdiffusion 115 -56 115 -56 0 feedthrough
+rlabel pdiffusion 3 -81 3 -81 0 feedthrough
+rlabel pdiffusion 10 -81 10 -81 0 feedthrough
+rlabel pdiffusion 17 -81 17 -81 0 cellNo=16
+rlabel pdiffusion 24 -81 24 -81 0 cellNo=3
+rlabel pdiffusion 31 -81 31 -81 0 cellNo=34
+rlabel pdiffusion 38 -81 38 -81 0 feedthrough
+rlabel pdiffusion 45 -81 45 -81 0 feedthrough
+rlabel pdiffusion 52 -81 52 -81 0 cellNo=13
+rlabel pdiffusion 59 -81 59 -81 0 cellNo=42
+rlabel pdiffusion 66 -81 66 -81 0 feedthrough
+rlabel pdiffusion 73 -81 73 -81 0 feedthrough
+rlabel pdiffusion 80 -81 80 -81 0 feedthrough
+rlabel pdiffusion 87 -81 87 -81 0 feedthrough
+rlabel pdiffusion 94 -81 94 -81 0 feedthrough
+rlabel pdiffusion 101 -81 101 -81 0 cellNo=22
+rlabel pdiffusion 108 -81 108 -81 0 feedthrough
+rlabel pdiffusion 115 -81 115 -81 0 feedthrough
+rlabel pdiffusion 3 -112 3 -112 0 feedthrough
+rlabel pdiffusion 10 -112 10 -112 0 cellNo=45
+rlabel pdiffusion 17 -112 17 -112 0 feedthrough
+rlabel pdiffusion 24 -112 24 -112 0 feedthrough
+rlabel pdiffusion 31 -112 31 -112 0 feedthrough
+rlabel pdiffusion 38 -112 38 -112 0 cellNo=27
+rlabel pdiffusion 45 -112 45 -112 0 cellNo=5
+rlabel pdiffusion 52 -112 52 -112 0 cellNo=37
+rlabel pdiffusion 59 -112 59 -112 0 cellNo=26
+rlabel pdiffusion 66 -112 66 -112 0 cellNo=44
+rlabel pdiffusion 73 -112 73 -112 0 feedthrough
+rlabel pdiffusion 80 -112 80 -112 0 cellNo=43
+rlabel pdiffusion 87 -112 87 -112 0 feedthrough
+rlabel pdiffusion 94 -112 94 -112 0 feedthrough
+rlabel pdiffusion 101 -112 101 -112 0 feedthrough
+rlabel pdiffusion 108 -112 108 -112 0 feedthrough
+rlabel pdiffusion 115 -112 115 -112 0 feedthrough
+rlabel pdiffusion 122 -112 122 -112 0 feedthrough
+rlabel pdiffusion 3 -141 3 -141 0 cellNo=19
+rlabel pdiffusion 10 -141 10 -141 0 feedthrough
+rlabel pdiffusion 17 -141 17 -141 0 cellNo=20
+rlabel pdiffusion 24 -141 24 -141 0 feedthrough
+rlabel pdiffusion 31 -141 31 -141 0 cellNo=1
+rlabel pdiffusion 38 -141 38 -141 0 cellNo=8
+rlabel pdiffusion 45 -141 45 -141 0 cellNo=31
+rlabel pdiffusion 52 -141 52 -141 0 feedthrough
+rlabel pdiffusion 59 -141 59 -141 0 feedthrough
+rlabel pdiffusion 66 -141 66 -141 0 cellNo=41
+rlabel pdiffusion 73 -141 73 -141 0 cellNo=39
+rlabel pdiffusion 80 -141 80 -141 0 feedthrough
+rlabel pdiffusion 87 -141 87 -141 0 feedthrough
+rlabel pdiffusion 94 -141 94 -141 0 feedthrough
+rlabel pdiffusion 101 -141 101 -141 0 feedthrough
+rlabel pdiffusion 108 -141 108 -141 0 feedthrough
+rlabel pdiffusion 115 -141 115 -141 0 feedthrough
+rlabel pdiffusion 122 -141 122 -141 0 feedthrough
+rlabel pdiffusion 129 -141 129 -141 0 feedthrough
+rlabel pdiffusion 10 -162 10 -162 0 cellNo=29
+rlabel pdiffusion 17 -162 17 -162 0 feedthrough
+rlabel pdiffusion 24 -162 24 -162 0 cellNo=38
+rlabel pdiffusion 31 -162 31 -162 0 cellNo=25
+rlabel pdiffusion 38 -162 38 -162 0 feedthrough
+rlabel pdiffusion 52 -162 52 -162 0 feedthrough
+rlabel pdiffusion 59 -162 59 -162 0 feedthrough
+rlabel pdiffusion 66 -162 66 -162 0 cellNo=9
+rlabel pdiffusion 73 -162 73 -162 0 cellNo=21
+rlabel pdiffusion 87 -162 87 -162 0 cellNo=28
+rlabel pdiffusion 94 -162 94 -162 0 cellNo=40
+rlabel pdiffusion 108 -162 108 -162 0 feedthrough
+rlabel polysilicon 23 -4 23 -4 0 1
+rlabel polysilicon 23 -10 23 -10 0 3
+rlabel polysilicon 30 -4 30 -4 0 1
+rlabel polysilicon 30 -10 30 -10 0 3
+rlabel polysilicon 37 -4 37 -4 0 1
+rlabel polysilicon 40 -10 40 -10 0 4
+rlabel polysilicon 44 -4 44 -4 0 1
+rlabel polysilicon 47 -4 47 -4 0 2
+rlabel polysilicon 47 -10 47 -10 0 4
+rlabel polysilicon 51 -4 51 -4 0 1
+rlabel polysilicon 51 -10 51 -10 0 3
+rlabel polysilicon 58 -4 58 -4 0 1
+rlabel polysilicon 58 -10 58 -10 0 3
+rlabel polysilicon 65 -10 65 -10 0 3
+rlabel polysilicon 72 -4 72 -4 0 1
+rlabel polysilicon 72 -10 72 -10 0 3
+rlabel polysilicon 2 -21 2 -21 0 1
+rlabel polysilicon 2 -27 2 -27 0 3
+rlabel polysilicon 19 -21 19 -21 0 2
+rlabel polysilicon 23 -21 23 -21 0 1
+rlabel polysilicon 23 -27 23 -27 0 3
+rlabel polysilicon 30 -21 30 -21 0 1
+rlabel polysilicon 30 -27 30 -27 0 3
+rlabel polysilicon 37 -21 37 -21 0 1
+rlabel polysilicon 37 -27 37 -27 0 3
+rlabel polysilicon 47 -21 47 -21 0 2
+rlabel polysilicon 47 -27 47 -27 0 4
+rlabel polysilicon 51 -21 51 -21 0 1
+rlabel polysilicon 51 -27 51 -27 0 3
+rlabel polysilicon 58 -21 58 -21 0 1
+rlabel polysilicon 58 -27 58 -27 0 3
+rlabel polysilicon 68 -21 68 -21 0 2
+rlabel polysilicon 65 -27 65 -27 0 3
+rlabel polysilicon 68 -27 68 -27 0 4
+rlabel polysilicon 72 -21 72 -21 0 1
+rlabel polysilicon 72 -27 72 -27 0 3
+rlabel polysilicon 9 -52 9 -52 0 1
+rlabel polysilicon 12 -52 12 -52 0 2
+rlabel polysilicon 19 -58 19 -58 0 4
+rlabel polysilicon 23 -52 23 -52 0 1
+rlabel polysilicon 26 -52 26 -52 0 2
+rlabel polysilicon 30 -52 30 -52 0 1
+rlabel polysilicon 33 -52 33 -52 0 2
+rlabel polysilicon 30 -58 30 -58 0 3
+rlabel polysilicon 33 -58 33 -58 0 4
+rlabel polysilicon 37 -52 37 -52 0 1
+rlabel polysilicon 37 -58 37 -58 0 3
+rlabel polysilicon 44 -52 44 -52 0 1
+rlabel polysilicon 44 -58 44 -58 0 3
+rlabel polysilicon 47 -58 47 -58 0 4
+rlabel polysilicon 51 -52 51 -52 0 1
+rlabel polysilicon 51 -58 51 -58 0 3
+rlabel polysilicon 58 -52 58 -52 0 1
+rlabel polysilicon 58 -58 58 -58 0 3
+rlabel polysilicon 65 -52 65 -52 0 1
+rlabel polysilicon 65 -58 65 -58 0 3
+rlabel polysilicon 68 -58 68 -58 0 4
+rlabel polysilicon 72 -52 72 -52 0 1
+rlabel polysilicon 72 -58 72 -58 0 3
+rlabel polysilicon 79 -52 79 -52 0 1
+rlabel polysilicon 79 -58 79 -58 0 3
+rlabel polysilicon 86 -52 86 -52 0 1
+rlabel polysilicon 86 -58 86 -58 0 3
+rlabel polysilicon 93 -52 93 -52 0 1
+rlabel polysilicon 93 -58 93 -58 0 3
+rlabel polysilicon 100 -52 100 -52 0 1
+rlabel polysilicon 100 -58 100 -58 0 3
+rlabel polysilicon 107 -52 107 -52 0 1
+rlabel polysilicon 107 -58 107 -58 0 3
+rlabel polysilicon 114 -52 114 -52 0 1
+rlabel polysilicon 114 -58 114 -58 0 3
+rlabel polysilicon 2 -77 2 -77 0 1
+rlabel polysilicon 2 -83 2 -83 0 3
+rlabel polysilicon 9 -77 9 -77 0 1
+rlabel polysilicon 9 -83 9 -83 0 3
+rlabel polysilicon 19 -77 19 -77 0 2
+rlabel polysilicon 16 -83 16 -83 0 3
+rlabel polysilicon 23 -77 23 -77 0 1
+rlabel polysilicon 23 -83 23 -83 0 3
+rlabel polysilicon 26 -83 26 -83 0 4
+rlabel polysilicon 33 -77 33 -77 0 2
+rlabel polysilicon 30 -83 30 -83 0 3
+rlabel polysilicon 33 -83 33 -83 0 4
+rlabel polysilicon 37 -77 37 -77 0 1
+rlabel polysilicon 37 -83 37 -83 0 3
+rlabel polysilicon 44 -77 44 -77 0 1
+rlabel polysilicon 44 -83 44 -83 0 3
+rlabel polysilicon 51 -77 51 -77 0 1
+rlabel polysilicon 51 -83 51 -83 0 3
+rlabel polysilicon 54 -83 54 -83 0 4
+rlabel polysilicon 58 -77 58 -77 0 1
+rlabel polysilicon 58 -83 58 -83 0 3
+rlabel polysilicon 65 -77 65 -77 0 1
+rlabel polysilicon 65 -83 65 -83 0 3
+rlabel polysilicon 72 -77 72 -77 0 1
+rlabel polysilicon 72 -83 72 -83 0 3
+rlabel polysilicon 79 -77 79 -77 0 1
+rlabel polysilicon 79 -83 79 -83 0 3
+rlabel polysilicon 86 -77 86 -77 0 1
+rlabel polysilicon 86 -83 86 -83 0 3
+rlabel polysilicon 93 -77 93 -77 0 1
+rlabel polysilicon 93 -83 93 -83 0 3
+rlabel polysilicon 103 -77 103 -77 0 2
+rlabel polysilicon 100 -83 100 -83 0 3
+rlabel polysilicon 107 -77 107 -77 0 1
+rlabel polysilicon 107 -83 107 -83 0 3
+rlabel polysilicon 114 -77 114 -77 0 1
+rlabel polysilicon 114 -83 114 -83 0 3
+rlabel polysilicon 2 -108 2 -108 0 1
+rlabel polysilicon 2 -114 2 -114 0 3
+rlabel polysilicon 12 -108 12 -108 0 2
+rlabel polysilicon 12 -114 12 -114 0 4
+rlabel polysilicon 16 -108 16 -108 0 1
+rlabel polysilicon 16 -114 16 -114 0 3
+rlabel polysilicon 23 -108 23 -108 0 1
+rlabel polysilicon 23 -114 23 -114 0 3
+rlabel polysilicon 30 -108 30 -108 0 1
+rlabel polysilicon 30 -114 30 -114 0 3
+rlabel polysilicon 37 -108 37 -108 0 1
+rlabel polysilicon 40 -114 40 -114 0 4
+rlabel polysilicon 44 -108 44 -108 0 1
+rlabel polysilicon 47 -108 47 -108 0 2
+rlabel polysilicon 54 -108 54 -108 0 2
+rlabel polysilicon 51 -114 51 -114 0 3
+rlabel polysilicon 54 -114 54 -114 0 4
+rlabel polysilicon 58 -108 58 -108 0 1
+rlabel polysilicon 61 -108 61 -108 0 2
+rlabel polysilicon 65 -108 65 -108 0 1
+rlabel polysilicon 68 -108 68 -108 0 2
+rlabel polysilicon 65 -114 65 -114 0 3
+rlabel polysilicon 68 -114 68 -114 0 4
+rlabel polysilicon 72 -108 72 -108 0 1
+rlabel polysilicon 72 -114 72 -114 0 3
+rlabel polysilicon 79 -108 79 -108 0 1
+rlabel polysilicon 82 -108 82 -108 0 2
+rlabel polysilicon 86 -108 86 -108 0 1
+rlabel polysilicon 86 -114 86 -114 0 3
+rlabel polysilicon 93 -108 93 -108 0 1
+rlabel polysilicon 93 -114 93 -114 0 3
+rlabel polysilicon 100 -108 100 -108 0 1
+rlabel polysilicon 100 -114 100 -114 0 3
+rlabel polysilicon 107 -108 107 -108 0 1
+rlabel polysilicon 107 -114 107 -114 0 3
+rlabel polysilicon 114 -108 114 -108 0 1
+rlabel polysilicon 114 -114 114 -114 0 3
+rlabel polysilicon 121 -108 121 -108 0 1
+rlabel polysilicon 121 -114 121 -114 0 3
+rlabel polysilicon 9 -137 9 -137 0 1
+rlabel polysilicon 9 -143 9 -143 0 3
+rlabel polysilicon 16 -143 16 -143 0 3
+rlabel polysilicon 23 -137 23 -137 0 1
+rlabel polysilicon 23 -143 23 -143 0 3
+rlabel polysilicon 30 -137 30 -137 0 1
+rlabel polysilicon 37 -137 37 -137 0 1
+rlabel polysilicon 40 -137 40 -137 0 2
+rlabel polysilicon 37 -143 37 -143 0 3
+rlabel polysilicon 44 -137 44 -137 0 1
+rlabel polysilicon 47 -137 47 -137 0 2
+rlabel polysilicon 47 -143 47 -143 0 4
+rlabel polysilicon 51 -137 51 -137 0 1
+rlabel polysilicon 51 -143 51 -143 0 3
+rlabel polysilicon 58 -137 58 -137 0 1
+rlabel polysilicon 58 -143 58 -143 0 3
+rlabel polysilicon 68 -137 68 -137 0 2
+rlabel polysilicon 68 -143 68 -143 0 4
+rlabel polysilicon 75 -137 75 -137 0 2
+rlabel polysilicon 72 -143 72 -143 0 3
+rlabel polysilicon 75 -143 75 -143 0 4
+rlabel polysilicon 79 -137 79 -137 0 1
+rlabel polysilicon 79 -143 79 -143 0 3
+rlabel polysilicon 86 -137 86 -137 0 1
+rlabel polysilicon 86 -143 86 -143 0 3
+rlabel polysilicon 93 -137 93 -137 0 1
+rlabel polysilicon 93 -143 93 -143 0 3
+rlabel polysilicon 100 -137 100 -137 0 1
+rlabel polysilicon 100 -143 100 -143 0 3
+rlabel polysilicon 107 -137 107 -137 0 1
+rlabel polysilicon 107 -143 107 -143 0 3
+rlabel polysilicon 114 -137 114 -137 0 1
+rlabel polysilicon 114 -143 114 -143 0 3
+rlabel polysilicon 121 -137 121 -137 0 1
+rlabel polysilicon 121 -143 121 -143 0 3
+rlabel polysilicon 128 -137 128 -137 0 1
+rlabel polysilicon 128 -143 128 -143 0 3
+rlabel polysilicon 9 -158 9 -158 0 1
+rlabel polysilicon 12 -158 12 -158 0 2
+rlabel polysilicon 16 -158 16 -158 0 1
+rlabel polysilicon 16 -164 16 -164 0 3
+rlabel polysilicon 23 -158 23 -158 0 1
+rlabel polysilicon 23 -164 23 -164 0 3
+rlabel polysilicon 26 -164 26 -164 0 4
+rlabel polysilicon 30 -158 30 -158 0 1
+rlabel polysilicon 33 -164 33 -164 0 4
+rlabel polysilicon 37 -158 37 -158 0 1
+rlabel polysilicon 37 -164 37 -164 0 3
+rlabel polysilicon 51 -158 51 -158 0 1
+rlabel polysilicon 51 -164 51 -164 0 3
+rlabel polysilicon 58 -158 58 -158 0 1
+rlabel polysilicon 58 -164 58 -164 0 3
+rlabel polysilicon 68 -164 68 -164 0 4
+rlabel polysilicon 75 -158 75 -158 0 2
+rlabel polysilicon 89 -158 89 -158 0 2
+rlabel polysilicon 93 -158 93 -158 0 1
+rlabel polysilicon 93 -164 93 -164 0 3
+rlabel polysilicon 107 -158 107 -158 0 1
+rlabel polysilicon 107 -164 107 -164 0 3
+rlabel metal2 23 1 23 1 0 net=88
+rlabel metal2 44 1 44 1 0 net=122
+rlabel metal2 30 -1 30 -1 0 net=100
+rlabel metal2 51 -1 51 -1 0 net=152
+rlabel metal2 2 -12 2 -12 0 net=132
+rlabel metal2 30 -12 30 -12 0 net=101
+rlabel metal2 40 -12 40 -12 0 net=23
+rlabel metal2 51 -12 51 -12 0 net=30
+rlabel metal2 23 -14 23 -14 0 net=90
+rlabel metal2 65 -14 65 -14 0 net=153
+rlabel metal2 23 -16 23 -16 0 net=106
+rlabel metal2 58 -16 58 -16 0 net=124
+rlabel metal2 51 -18 51 -18 0 net=74
+rlabel metal2 2 -29 2 -29 0 net=133
+rlabel metal2 33 -29 33 -29 0 net=15
+rlabel metal2 68 -29 68 -29 0 net=130
+rlabel metal2 12 -31 12 -31 0 net=114
+rlabel metal2 23 -33 23 -33 0 net=107
+rlabel metal2 23 -33 23 -33 0 net=107
+rlabel metal2 44 -33 44 -33 0 net=150
+rlabel metal2 47 -35 47 -35 0 net=102
+rlabel metal2 65 -37 65 -37 0 net=108
+rlabel metal2 72 -39 72 -39 0 net=126
+rlabel metal2 58 -41 58 -41 0 net=96
+rlabel metal2 51 -43 51 -43 0 net=76
+rlabel metal2 30 -45 30 -45 0 net=92
+rlabel metal2 30 -47 30 -47 0 net=38
+rlabel metal2 9 -49 9 -49 0 net=84
+rlabel metal2 2 -60 2 -60 0 net=146
+rlabel metal2 65 -60 65 -60 0 net=131
+rlabel metal2 9 -62 9 -62 0 net=104
+rlabel metal2 33 -62 33 -62 0 net=140
+rlabel metal2 19 -64 19 -64 0 net=115
+rlabel metal2 19 -66 19 -66 0 net=7
+rlabel metal2 33 -66 33 -66 0 net=12
+rlabel metal2 58 -66 58 -66 0 net=78
+rlabel metal2 68 -66 68 -66 0 net=151
+rlabel metal2 37 -68 37 -68 0 net=86
+rlabel metal2 79 -68 79 -68 0 net=128
+rlabel metal2 103 -68 103 -68 0 net=142
+rlabel metal2 37 -70 37 -70 0 net=46
+rlabel metal2 72 -70 72 -70 0 net=98
+rlabel metal2 86 -70 86 -70 0 net=110
+rlabel metal2 86 -70 86 -70 0 net=110
+rlabel metal2 51 -72 51 -72 0 net=94
+rlabel metal2 51 -74 51 -74 0 net=103
+rlabel metal2 2 -85 2 -85 0 net=147
+rlabel metal2 30 -85 30 -85 0 net=99
+rlabel metal2 82 -85 82 -85 0 net=141
+rlabel metal2 9 -87 9 -87 0 net=105
+rlabel metal2 44 -87 44 -87 0 net=87
+rlabel metal2 58 -87 58 -87 0 net=129
+rlabel metal2 100 -87 100 -87 0 net=143
+rlabel metal2 2 -89 2 -89 0 net=62
+rlabel metal2 65 -89 65 -89 0 net=80
+rlabel metal2 12 -91 12 -91 0 net=158
+rlabel metal2 16 -93 16 -93 0 net=60
+rlabel metal2 51 -93 51 -93 0 net=43
+rlabel metal2 79 -93 79 -93 0 net=116
+rlabel metal2 23 -95 23 -95 0 net=3
+rlabel metal2 86 -95 86 -95 0 net=112
+rlabel metal2 23 -97 23 -97 0 net=48
+rlabel metal2 65 -97 65 -97 0 net=70
+rlabel metal2 30 -99 30 -99 0 net=50
+rlabel metal2 33 -101 33 -101 0 net=148
+rlabel metal2 37 -103 37 -103 0 net=95
+rlabel metal2 61 -105 61 -105 0 net=66
+rlabel metal2 2 -116 2 -116 0 net=64
+rlabel metal2 65 -116 65 -116 0 net=113
+rlabel metal2 121 -116 121 -116 0 net=160
+rlabel metal2 12 -118 12 -118 0 net=49
+rlabel metal2 37 -118 37 -118 0 net=149
+rlabel metal2 16 -120 16 -120 0 net=61
+rlabel metal2 44 -120 44 -120 0 net=36
+rlabel metal2 72 -120 72 -120 0 net=68
+rlabel metal2 23 -122 23 -122 0 net=54
+rlabel metal2 51 -122 51 -122 0 net=81
+rlabel metal2 30 -124 30 -124 0 net=52
+rlabel metal2 54 -124 54 -124 0 net=138
+rlabel metal2 9 -126 9 -126 0 net=58
+rlabel metal2 68 -126 68 -126 0 net=154
+rlabel metal2 75 -128 75 -128 0 net=82
+rlabel metal2 79 -130 79 -130 0 net=118
+rlabel metal2 40 -132 40 -132 0 net=136
+rlabel metal2 86 -134 86 -134 0 net=72
+rlabel metal2 86 -134 86 -134 0 net=72
+rlabel metal2 16 -145 16 -145 0 net=65
+rlabel metal2 72 -145 72 -145 0 net=69
+rlabel metal2 12 -147 12 -147 0 net=134
+rlabel metal2 30 -147 30 -147 0 net=139
+rlabel metal2 37 -149 37 -149 0 net=9
+rlabel metal2 51 -149 51 -149 0 net=53
+rlabel metal2 75 -149 75 -149 0 net=73
+rlabel metal2 89 -149 89 -149 0 net=161
+rlabel metal2 23 -151 23 -151 0 net=56
+rlabel metal2 58 -151 58 -151 0 net=120
+rlabel metal2 93 -151 93 -151 0 net=83
+rlabel metal2 93 -151 93 -151 0 net=83
+rlabel metal2 9 -153 9 -153 0 net=59
+rlabel metal2 75 -153 75 -153 0 net=137
+rlabel metal2 9 -155 9 -155 0 net=144
+rlabel metal2 107 -155 107 -155 0 net=156
+rlabel metal2 16 -166 16 -166 0 net=135
+rlabel metal2 26 -166 26 -166 0 net=57
+rlabel metal2 58 -166 58 -166 0 net=121
+rlabel metal2 93 -166 93 -166 0 net=157
+rlabel metal2 33 -168 33 -168 0 net=145
+<< end >>
