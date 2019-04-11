@@ -46,7 +46,7 @@ def main():
 	print("Graph Created")
 
 	# Perform Placement
-	place_params = {"is2D":True, "iteration_count": 100, "abort_limit": round(0.3 * connect_lst.num_cells) }
+	place_params = {"is2D":True, "iteration_count": 150, "abort_limit": round(0.3 * connect_lst.num_cells) }
 	cost, feedthrough_count, routing_lst, channel_lst, place_matrix = placement(connect_lst, place_params)
 	print(".\n.\n.")
 
