@@ -63,7 +63,10 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
     y_coord -= 2 * len(all_channels[idx]) + 1
     for cell in row:
       x_coord = cell[0] * 7
-      f.write("rect " + str(x_coord + 1) + " " + str(y_coord - 5) + " " + str(x_coord + 7) + " " + str(y_coord + 1) + "\n")
+      if connect_list.cells[cell[5]].isCkt:
+        f.write("rect " + str(x_coord + 1) + " " + str(y_coord - 5) + " " + str(x_coord + 7) + " " + str(y_coord + 1) + "\n")
+      else:
+        f.write("rect " + str(x_coord + 1) + " " + str(y_coord - 5) + " " + str(x_coord + 4) + " " + str(y_coord + 1) + "\n")
       labelText = "feedthrough"
       if connect_list.cells[cell[5]].isCkt:
         labelText = "cellNo=" + str(cell[5])
