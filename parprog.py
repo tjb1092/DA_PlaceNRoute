@@ -40,8 +40,6 @@ def main():
 	# generate the output file directories if the don't exist
 	if not os.path.exists("Results"):
 		os.makedirs("Results")
-	if not os.path.exists("Images"):
-		os.makedirs("Images")
 
 	# Load the input data and generate the graph
 	connect_lst = data_load(args.i)

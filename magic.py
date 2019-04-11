@@ -31,8 +31,9 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
     cells_here = []
     bottom = next(it)
     # Group columns by the cell they belong to
-    cell_col = 0
+    cell_col = -1 
     for i in range(0, len(top), 2):
+      cell_col += 1
       # If the cell exists, we'll need to print it
       # Even if it doesn't have any terminals
       cell_num = place_matrix[cell_row][cell_col][0]
@@ -52,10 +53,8 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
           bottom_right = True
         # Collect all the information about the cell
         if not connect_list.cells[cell_num].isCkt and not (top_left or top_right or bottom_left or bottom_right):
-          cell_col += 1
           continue
         cells_here += [(i // 2, top_left, top_right, bottom_left, bottom_right, cell_num)]
-        cell_col += 1
     standard_cells += [cells_here]
     cell_row += 1
   # Print all non-empty cells
