@@ -207,10 +207,11 @@ def add_feedthrough(connect_lst, place_matrix, channel_lst):
 
 	for row in range(len(place_matrix)):
 		# for each row, append vacant spots till it's rectangular
-		while len(place_matrix[row]) <= l:
-			# make each row l+1 long.
-			#This ensures that there is at least one vacant position per row for placement.
-			place_matrix[row].append([0, False])
+		while len(place_matrix[row]) < l:
+			ft_cell  = connect_lst.add_feedthrough_cell()
+			place_matrix[row].append([ft_cell, False])  # Append to appropriate row
+			connect_lst.cells[ft_cell].place_loc = (row, len(place_matrix[row])-1) # Update FT cell with coordinates
+		place_matrix[row].append([0, False])
 	return feedthrough_count
 
 def construct_routing_lst(connect_lst, place_matrix, channel_lst):
