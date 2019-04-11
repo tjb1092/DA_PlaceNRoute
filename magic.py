@@ -52,6 +52,7 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
           bottom_right = True
         # Collect all the information about the cell
         if not connect_list.cells[cell_num].isCkt and not (top_left or top_right or bottom_left or bottom_right):
+          cell_col += 1
           continue
         cells_here += [(i // 2, top_left, top_right, bottom_left, bottom_right, cell_num)]
         cell_col += 1
