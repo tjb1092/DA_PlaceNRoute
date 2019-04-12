@@ -7,7 +7,7 @@ files='1 2 3 4 5 6'
 for file in $files
 do
 	#
-	/usr/bin/time -v python3 parprog.py -i Results/$file -o Results/$file > Performance/$file
+	/usr/bin/time -v python3 parprog.py -i Example-Netlists/$file -o Results/$file > Performance/$file
 done
 
 
