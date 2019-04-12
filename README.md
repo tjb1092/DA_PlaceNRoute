@@ -11,3 +11,5 @@ Notes:
   if outputfile does not end in .mag, it will be appended
   time: use /usr/bin/time -v python3 parprog.py...
 
+  a Monolithic version of the python project is found in monolith.py
+  
