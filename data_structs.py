@@ -104,14 +104,6 @@ class ConnectivityList:
 
 		return self.nets[self.num_nets]
 
-	def update_locations(self, place_matrix):
-		# given a placement matrix, assign locations to each cell
-		for row in range(len(place_matrix)):
-			for col in range(len(place_matrix[row])):
-				cell = place_matrix[row][col][0]
-				if cell:
-					self.cells[cell].place_loc = (row, col)
-
 	def compute_place_cost(self):
 		# For each net, compute the rectilinear distance
 		# between the two connected cells.

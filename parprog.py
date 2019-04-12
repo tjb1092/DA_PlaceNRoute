@@ -12,9 +12,12 @@ Zach Collins
 
 Usage:
 Requires Python3.5 +
+Tested and benchmarked on VLSI lab computers 
 
 General CLI Interface:
-python3 parprog.py -i Benchmarks/InputBenchmark -o Results/OutputMagic
+python3 parprog.py -i Benchmarks/InputBenchmark -o Results/OutputMagic -padding 3 -iter_num 150
+
+padding and iter_num are optional arguments that default to 3 and 150 respectively
 """
 
 from import_data  import data_load
@@ -24,7 +27,6 @@ from routing import routing
 import time
 import os
 import argparse
-#from pympler import classtracker
 
 def main():
 	total_time = time.time()

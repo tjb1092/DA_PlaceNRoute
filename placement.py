@@ -1,6 +1,5 @@
 import time
 import copy
-#from pympler import classtracker
 from operator import itemgetter
 from collections import deque
 
@@ -55,11 +54,7 @@ def force_directed_placement(connect_lst, place_matrix, place_params):
 	else:
 		debug = False
 	cost = connect_lst.compute_place_cost()
-	best_place, best_cost = copy.deepcopy(place_matrix), cost
-
 	print("Initial Cost: {}".format(cost))
-	#input("pause")
-
 	tups = [(x.num, sum(x.nbrs.values())) for x in connect_lst.cells.values()]
 
 	iter_num = 0
@@ -139,13 +134,9 @@ def force_directed_placement(connect_lst, place_matrix, place_params):
 		iter_num += 1  # Completed full list w/o hitting abort limit
 		cost = connect_lst.compute_place_cost()
 		print("Cost: {}, Iteration {}/{} took {:0.3f} seconds".format(cost, iter_num, place_params["iteration_count"], time.time()-last_time), end="\r")
-		if cost < best_cost:
-			best_place, best_cost = copy.deepcopy(place_matrix), cost
 
 		last_time = time.time()
 
-	#place_matrix = copy.deepcopy(best_place)
-	#connect_lst.update_locations(place_matrix)
 	cost = connect_lst.compute_place_cost()
 	print("\nFinal cost: {}".format(cost))
 
