@@ -20,10 +20,6 @@ python3 parprog.py -i Benchmarks/InputBenchmark -o Results/OutputMagic -padding 
 padding and iter_num are optional arguments that default to 3 and 150 respectively
 """
 
-from import_data  import data_load
-from magic import magic
-from placement import placement
-from routing import routing
 import time
 import os
 import argparse
@@ -69,11 +65,6 @@ def main():
   print("File Generation Finished!")
 
   print("Total Execution time: {:0.3f} seconds".format(time.time()-total_time))
-
-
-if __name__ == "__main__":
-  main()
-
 
 # Data structures used for placement and routing.
 
@@ -880,3 +871,10 @@ def magic(all_channels, doglegs, routing_list, net_to_leftedge, net_to_rightedge
   print("Number of vias: " + str(num_vias))
   print("Total wire length: " + str(wire_length))
   print("Time Elapsed: " + str(end - start)[:4] + " seconds.")
+
+
+
+
+
+if __name__ == "__main__":
+  main()
