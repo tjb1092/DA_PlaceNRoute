@@ -35,6 +35,10 @@ def main():
 	                  help='What is the input filename?')
 	parser.add_argument('-o', type=str, default="Results/R_1",
 	                  help='What is the output filename?')
+	parser.add_argument('-iter_num', type=int, default=150,
+	                  help='Number of iterations for 1st placement')
+	parser.add_argument('-place_padding', type=int, default=3,
+	                  help='(rows + padding) x (col+padding) dimensions in placement')
 	args = parser.parse_args()
 
 	# generate the output file directories if the don't exist
@@ -46,7 +50,8 @@ def main():
 	print("Graph Created")
 
 	# Perform Placement
-	place_params = {"is2D":True, "iteration_count": 150, "abort_limit": round(0.3 * connect_lst.num_cells) }
+
+	place_params = {"is2D":True, "iteration_count": args.iter_num, "abort_limit": round(0.3 * connect_lst.num_cells), "padding":args.place_padding}
 	cost, feedthrough_count, routing_lst, channel_lst, place_matrix = placement(connect_lst, place_params)
 	print(".\n.\n.")
 

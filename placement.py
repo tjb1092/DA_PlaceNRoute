@@ -138,7 +138,7 @@ def force_directed_placement(connect_lst, place_matrix, place_params):
 		unlock_positions(place_matrix)
 		iter_num += 1  # Completed full list w/o hitting abort limit
 		cost = connect_lst.compute_place_cost()
-		print("Cost: {}, Iteration took {:0.3f} seconds".format(cost, time.time()-last_time), end="\r")
+		print("Cost: {}, Iteration {}/{} took {:0.3f} seconds".format(cost, iter_num, place_params["iteration_count"], time.time()-last_time), end="\r")
 		if cost < best_cost:
 			best_place, best_cost = copy.deepcopy(place_matrix), cost
 
@@ -256,6 +256,8 @@ def placement(connect_lst, place_params):
 	while x**2 < connect_lst.num_cells:
 		x += 1
 
+	x += place_params["padding"]  # Add extra vacant spots for cells to move to. proportional to the sqrt(number of cells)
+
 	# [cell num, locked]. num = 0 = vacant
 	place_matrix = [[[0, False] for i in range(x)] for j in range(x)]  # Instantiate a 2-D list matrix
 
@@ -275,7 +277,7 @@ def placement(connect_lst, place_params):
 
 	print("Starting 2nd Placement")
 	place_params["is2D"] = False
-	place_params["interation_count"] = 0.25 * place_params["iteration_count"]
+	place_params["iteration_count"] = 0.2 * place_params["iteration_count"]
 	cost = force_directed_placement(connect_lst, place_matrix, place_params)
 
 	routing_lst = construct_routing_lst(connect_lst, place_matrix, channel_lst)
